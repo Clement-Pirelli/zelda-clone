@@ -77,7 +77,9 @@ Collider* SwordProjectileEntity::getCollider(){
 }
 
 void SwordProjectileEntity::onCollision(Entity * otherEntity){
-
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_ENEMY) {
+		delete this;
+	}
 }
 
 ENTITYTYPE SwordProjectileEntity::getType(){

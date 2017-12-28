@@ -16,9 +16,6 @@ Collider* Obstacle::getCollider(){
 	return myCollider;
 }
 
-void Obstacle::onCollision(Entity * otherEntity){
-}
-
 ENTITYTYPE Obstacle::getType(){
 	return ENTITYTYPE::ENTITY_OBSTACLE;
 }

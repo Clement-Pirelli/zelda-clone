@@ -8,12 +8,9 @@
 #include "Room.h"
 
 GameState::GameState(){
-	CollisionManager::addCollisionPair(ENTITYTYPE::ENTITY_PLAYER, ENTITYTYPE::ENTITY_OBSTACLE);
-	CollisionManager::addCollisionPair(ENTITYTYPE::ENTITY_PLAYER, ENTITYTYPE::ENTITY_ENEMY);
-	CollisionManager::addCollisionPair(ENTITYTYPE::ENTITY_PLAYER, ENTITYTYPE::ENTITY_HIDDEN_CAVE);
 	myEntityManager = new EntityManager();
 	Service<EntityManager>::setService(myEntityManager);
-	PlayerAvatar* player = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, 100, 100);
+	PlayerAvatar* player = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, 100, 50);
 	myEntityManager->addEntity(player);
 	myRoomManager = new RoomManager();
 	Service<RoomManager>::setService(myRoomManager);
@@ -21,8 +18,9 @@ GameState::GameState(){
 		//first room to show on screen
 
 /*
-		X O
-		O O
+		X O O
+		O O O
+		O O O
 */
 
 		{
@@ -31,7 +29,6 @@ GameState::GameState(){
 			for (unsigned int i = 0; i < Room::widthInTiles; i++) {
 				for (unsigned int j = 0; j < Room::heightInTiles; j++) {
 					if (j != 3) {
-
 						tempArray[i][j] = ROOMTILETYPE::GROUND;
 					} else {
 						tempArray[i][j] = ROOMTILETYPE::BUSH;
@@ -43,10 +40,11 @@ GameState::GameState(){
 
 			tempRoom->addTiles();
 		}
-		//room to the bottom of the first room
+
 /*
-		O O
-		X O
+		O O O
+		X O O
+		O O O
 */
 
 		{
@@ -62,8 +60,9 @@ GameState::GameState(){
 		}
 
 /*
-		O X
-		O O
+		O X O
+		O O O
+		O O O
 */
 
 		{
@@ -71,8 +70,9 @@ GameState::GameState(){
 		}
 
 /*
-		O O
-		O X
+		O O O
+		O X O
+		O O O
 */
 
 		{

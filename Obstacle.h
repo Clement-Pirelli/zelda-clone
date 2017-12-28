@@ -8,7 +8,6 @@ public:
 	Obstacle(std::string givenFilePath, int givenX, int givenY, ROOMTILETYPE givenTileType);
 	virtual ~Obstacle();
 	virtual Collider* getCollider() override;
-	virtual void onCollision(Entity* otherEntity) override;
 	virtual ENTITYTYPE getType() override;
 protected:
 	RectangleCollider* myCollider = nullptr;

@@ -21,7 +21,7 @@ Tile::~Tile(){
 	mySprite = nullptr;
 }
 
-void Tile::render(){//TODO : create a "LayerInfo" folder with information about all layers
+void Tile::render(){
 	myRenderManager->draw(mySprite, position.x, position.y, LayerInfo::tileLayer);
 }
 

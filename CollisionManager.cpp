@@ -4,8 +4,6 @@
 #include "RectangleCollider.h"
 #include "Entity.h"
 
-std::vector<std::pair<ENTITYTYPE, ENTITYTYPE>> CollisionManager::collisionPairs;
-
 CollisionManager::CollisionManager(){
 }
 
@@ -13,40 +11,12 @@ CollisionManager::CollisionManager(){
 CollisionManager::~CollisionManager(){
 }
 
-void CollisionManager::addCollisionPair(ENTITYTYPE firstGivenType, ENTITYTYPE secondGivenType){
-	for (unsigned int i = 0; i < collisionPairs.size(); i++) {
-		if (
-		(collisionPairs[i].first == firstGivenType && collisionPairs[i].second == secondGivenType)
-		|| (collisionPairs[i].first == secondGivenType && collisionPairs[i].second == firstGivenType)
-		) {
-			return;
-		}
-	}
-	collisionPairs.push_back(std::make_pair(firstGivenType, secondGivenType));
-}
-
-void CollisionManager::removeCollisionPair(ENTITYTYPE firstGivenType, ENTITYTYPE secondGivenType){
-	for (unsigned int i = 0; i < collisionPairs.size(); i++) {
-		if (
-			(collisionPairs[i].first == firstGivenType && collisionPairs[i].second == secondGivenType)
-			|| (collisionPairs[i].first == secondGivenType && collisionPairs[i].second == firstGivenType)
-			) {
-			collisionPairs.erase(collisionPairs.begin() + i);
-		}
-	}
-}
-
 bool CollisionManager::checkIfColliding(Entity* givenLeftEntity, Entity* givenRightEntity){
-	if (givenLeftEntity->getCollider() == nullptr || givenRightEntity->getCollider() == nullptr) {
-		return false;
-	}
-	for (unsigned int i = 0; i < collisionPairs.size(); i++) {
-		if (
-			(collisionPairs[i].first == givenRightEntity->getType() && collisionPairs[i].second == givenLeftEntity->getType())
-			|| (collisionPairs[i].first == givenRightEntity->getType() && collisionPairs[i].second == givenLeftEntity->getType())
-			) {
-			return checkIfColliding(givenLeftEntity->getCollider(), givenRightEntity->getCollider());
+	if (givenLeftEntity != nullptr && givenRightEntity != nullptr) {
+		if (givenLeftEntity->getCollider() == nullptr || givenRightEntity->getCollider() == nullptr) {
+			return false;
 		}
+		return checkIfColliding(givenLeftEntity->getCollider(), givenRightEntity->getCollider());
 	}
 	return false;
 }

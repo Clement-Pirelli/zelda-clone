@@ -49,6 +49,12 @@ void EntityManager::removeEntity(Entity* givenEntity){
 	}
 }
 
+/*
+	Checking every single entity for collision takes a LOT of time, which lowers the frame-rate of the game drastically.
+	To combat this, instead of checking for collision pairs, we check for collision for all entities which we know have collisions (aka, they do not return a nullptr when we ask for their collider)
+	The downsides of this approach is that there are many onCollision() functions which will, by design, never ever be called.
+	However, the upside is that we can get rid of the collision pairs, as well as have decent framerate.
+*/
 std::vector<Entity*> EntityManager::getAllCollisionEntities(){
 	std::vector<Entity*> returnVector;
 	for (Entity* e : entities) {

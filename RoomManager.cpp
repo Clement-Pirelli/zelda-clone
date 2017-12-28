@@ -39,6 +39,7 @@ bool RoomManager::getRoomChange(){
 void RoomManager::update(){
 	roomChange = false;
 	std::vector<PlayerAvatar*> players = Service<EntityManager>::getService()->getEntities<PlayerAvatar>();
+	//This assumes that the player cannot go out of bounds, aka that the level design is sound.
 	for (PlayerAvatar* pl : players) {
 		if (pl->getPosition().x > Room::getWidthInPixels() - pl->getSprite()->getWidth()) {
 			if (roomArray[currentRow][currentColumn]->getSpecialDestination().x == -1) {

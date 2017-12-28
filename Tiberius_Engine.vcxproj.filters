@@ -121,6 +121,12 @@
     <Filter Include="Header Files\Game\Entities\Tiles">
       <UniqueIdentifier>{de4f0fb4-38e9-4be2-b98c-dab6d6a81f95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Entities\Enemies">
+      <UniqueIdentifier>{4315dc75-abf4-48cb-a19d-331c6f632bb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Entities\Enemies">
+      <UniqueIdentifier>{281c4559-1b71-4c2b-a83a-d6a0a16e75db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -238,7 +244,13 @@
       <Filter>Header Files\Game\Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="Cave.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Game\Entities\Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="BombItem.h">
+      <Filter>Header Files\Game\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Game\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -336,7 +348,13 @@
       <Filter>Source Files\Game\Entities\Tiles</Filter>
     </ClCompile>
     <ClCompile Include="Cave.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\Entities\Tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="BombItem.cpp">
+      <Filter>Source Files\Game\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Game\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

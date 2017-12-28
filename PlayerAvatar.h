@@ -73,8 +73,8 @@ private:
 		swordItemKey;
 	PLAYERDIRECTION direction = PLAYERDIRECTION::UP;
 	PLAYERSTATE state = PLAYERSTATE::IDLE;
-	static const ENTITYTYPE type = ENTITYTYPE::ENTITY_PLAYER;
 	SDL_Point position;
+	SDL_Point lastPosition;
 	int velocityX = 0;
 	int velocityY = 0;
 	int halfHearts = 6;

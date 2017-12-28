@@ -10,6 +10,7 @@
 #include "InventoryItem.h"
 #include "FirstSwordItem.h"
 #include "LayerInfo.h"
+#include "Room.h"
 #include <vector>
 
 
@@ -97,6 +98,8 @@ PlayerAvatar::~PlayerAvatar(){
 }
 
 void PlayerAvatar::update(float givenDeltaTime) {
+	lastPosition.x = position.x;
+	lastPosition.y = position.y;
 	velocityX = 0;
 	velocityY = 0;
 	switch (state) {
@@ -166,11 +169,20 @@ SDL_Point PlayerAvatar::getPosition(){
 }
 
 void PlayerAvatar::onCollision(Entity* otherEntity){
-	
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_OBSTACLE) {
+		
+		position.x = lastPosition.x;
+		position.y = lastPosition.y;
+		myCollider->setPosition(position.x, position.y);
+	}
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_CAVE) {
+		position.x = Room::getWidthInPixels() / 2;
+		position.y = Room::getHeightInPixels() - currentAnimation->getCurrentSprite()->getHeight();
+	}
 }
 
 ENTITYTYPE PlayerAvatar::getType(){
-	return PlayerAvatar::type;
+	return ENTITYTYPE::ENTITY_PLAYER;
 }
 
 PLAYERDIRECTION PlayerAvatar::getDirection(){

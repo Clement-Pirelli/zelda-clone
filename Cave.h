@@ -8,10 +8,10 @@ public:
 	Cave(std::string givenFilePath, int givenX, int givenY, ROOMTILETYPE givenTileType);
 	~Cave();
 	Collider* getCollider() override;
+	void render() override;
 	void onCollision(Entity* otherEntity) override;
 	ENTITYTYPE getType() override;
 private:
 	bool opened = false;
-	Sprite* openedSprite = nullptr;
 };
 

@@ -17,7 +17,7 @@ std::string BOTTOMTEXT_State::nextState = "state 1";
 
 //TODO : add the collision pairs we want for this state here
 BOTTOMTEXT_State::BOTTOMTEXT_State(){
-	CollisionManager::addCollisionPair(ENTITY_PLAYER, ENTITY_PLAYER);
+	//CollisionManager::addCollisionPair(ENTITY_PLAYER, ENTITY_PLAYER);
 	std::vector<Sprite*> tempSprites;
 	//add more sprites to the tempSprites vector for all animations
 	tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", 0, 0, 16, 16));
