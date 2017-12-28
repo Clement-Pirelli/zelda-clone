@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{82E49B01-958E-4B57-A014-46FA7D7906D2}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TiberiusEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\Bin\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\Dependencies\SDL2\include;$(ProjectDir)..\Dependencies\SDL_Mixer\include;$(ProjectDir)..\Dependencies\SDL_image\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\Bin\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\Dependencies\SDL2\include;$(ProjectDir)..\Dependencies\SDL_Mixer\include;$(ProjectDir)..\Dependencies\SDL_image\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\Bin\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\Dependencies\SDL2\include;$(ProjectDir)..\Dependencies\SDL_Mixer\include;$(ProjectDir)..\Dependencies\SDL_image\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\Bin\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\Dependencies\SDL2\include;$(ProjectDir)..\Dependencies\SDL_Mixer\include;$(ProjectDir)..\Dependencies\SDL_image\include</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>FOR /r "$(ProjectDir)..\Dependencies\" %%f in ($(Platform)\*.dll) do @xcopy /y /d /f %%f "$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>FOR /r "$(ProjectDir)..\Dependencies\" %%f in ($(Platform)\*.dll) do @xcopy /y /d /f %%f "$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>FOR /r "$(ProjectDir)..\Dependencies\" %%f in ($(Platform)\*.dll) do @xcopy /y /d /f %%f "$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>FOR /r "$(ProjectDir)..\Dependencies\" %%f in ($(Platform)\*.dll) do @xcopy /y /d /f %%f "$(SolutionDir)\..\Builds\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="BOTTOMTEXT_State.h" />
+    <ClInclude Include="Cave.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="EngineConfig.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="InventoryItem.h" />
+    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="LayerInfo.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="BOTTOMTEXT_Entity.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="PlayerAvatar.h" />
+    <ClInclude Include="RectangleCollider.h" />
+    <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="Room.h" />
+    <ClInclude Include="RoomManager.h" />
+    <ClInclude Include="Service.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteManager.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="StateOwner.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="FirstSwordEntity.h" />
+    <ClInclude Include="FirstSwordItem.h" />
+    <ClInclude Include="SwordEntity.h" />
+    <ClInclude Include="SwordItem.h" />
+    <ClInclude Include="SwordProjectileEntity.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Tile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BOTTOMTEXT_State.cpp" />
+    <ClCompile Include="Cave.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="EngineConfig.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="BOTTOMTEXT_Entity.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="PlayerAvatar.cpp" />
+    <ClCompile Include="RectangleCollider.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="Room.cpp" />
+    <ClCompile Include="RoomManager.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteManager.cpp" />
+    <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="StateOwner.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="FirstSwordEntity.cpp" />
+    <ClCompile Include="FirstSwordItem.cpp" />
+    <ClCompile Include="SwordEntity.cpp" />
+    <ClCompile Include="SwordProjectileEntity.cpp" />
+    <ClCompile Include="Tiberius_Engine.cpp" />
+    <ClCompile Include="Tile.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

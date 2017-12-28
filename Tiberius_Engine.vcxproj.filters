@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{810bd8ae-3838-4a58-b11e-5e656757351b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{e96e8e7e-00cd-4dbe-aca3-bd34e2972828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{2f21876b-6a9c-4846-913d-ee5e68fb9636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{aad2cc99-a3e6-4bfc-bf21-fd669216203f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Utility">
+      <UniqueIdentifier>{a4c6c408-7e7e-4f7d-a586-b2288dd25298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager">
+      <UniqueIdentifier>{a66fc0cc-e48e-4a82-a03f-2daee160ba1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Input">
+      <UniqueIdentifier>{9756e2b7-80d1-41d6-ab6b-f7bbdffae0d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Collision">
+      <UniqueIdentifier>{a013e926-32ff-4221-bdbb-5194ffbccc9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Render">
+      <UniqueIdentifier>{42e63fd8-7f8c-40f8-895c-c234de8f5933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Sprite">
+      <UniqueIdentifier>{af4b335a-b789-4267-b3a3-d4bfabfe14c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\State">
+      <UniqueIdentifier>{29f78c3b-2709-44e2-ab87-8cda490bc5b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{ff679de8-0158-46c1-a6a6-2329bcbc8728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers">
+      <UniqueIdentifier>{070e622c-d07c-4717-b11f-f4ae051d4bdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Sound">
+      <UniqueIdentifier>{a8a04c85-2580-405f-ba27-923522a02762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Sound">
+      <UniqueIdentifier>{a7bdad0f-984b-4be2-b458-b85b72c30379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Collision">
+      <UniqueIdentifier>{fee55e4f-1aec-4d34-9b0d-1d99a94b72d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Sprite">
+      <UniqueIdentifier>{9aca0b6e-09d2-4f2b-9622-5cdf121520d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Input">
+      <UniqueIdentifier>{1afb6f4c-a502-4074-a3e5-b0111fa180c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\State">
+      <UniqueIdentifier>{06837f98-02d1-4677-b8f5-98a6314c3020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Entity">
+      <UniqueIdentifier>{3cf69211-d0d2-4445-9b68-0564c33b28a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Render">
+      <UniqueIdentifier>{69a44a82-ba20-4fb4-8f91-c9c4842df47a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Entity">
+      <UniqueIdentifier>{5e4e1db2-e412-4abe-a1cf-4490c385cb36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Room">
+      <UniqueIdentifier>{bad0ae33-1fab-41cf-869f-11c401ef7025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Room">
+      <UniqueIdentifier>{cf20b256-2487-4864-8dd7-23c026b57217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Entities">
+      <UniqueIdentifier>{9dd6760f-0d8c-42d6-958b-f37fa31c329b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\States">
+      <UniqueIdentifier>{94dbece0-32b5-4d68-92f2-0d33a65f2f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Manager\Animation">
+      <UniqueIdentifier>{2daf3a7a-5e2b-4376-9a11-4e4475ac6eca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers\Animation">
+      <UniqueIdentifier>{464a6094-866a-4ba4-b16d-153a4ccb030a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\States">
+      <UniqueIdentifier>{950bb8c5-e1e7-4275-afc0-3d8f8985c742}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Entities">
+      <UniqueIdentifier>{813a5183-debf-442f-abe8-1c7fe2052920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Inventory">
+      <UniqueIdentifier>{7465b5b9-9384-4791-80f1-2c3b32e9c87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Inventory">
+      <UniqueIdentifier>{2205062b-ba2a-49c0-a2f4-c16c40d5584e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Entities\Player">
+      <UniqueIdentifier>{beb041a8-0476-4e9e-8db8-d081c927eab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Entities\Tiles">
+      <UniqueIdentifier>{ce3fdd8c-e629-4830-9083-f2968d826330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Entities\Player">
+      <UniqueIdentifier>{21ca9656-e830-41f3-a3a2-de1e3cff259a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Entities\Tiles">
+      <UniqueIdentifier>{de4f0fb4-38e9-4be2-b98c-dab6d6a81f95}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineConfig.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Header Files\Engine\Managers\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Header Files\Engine\Managers\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Header Files\Engine\Managers\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Engine\Managers\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteManager.h">
+      <Filter>Header Files\Engine\Managers\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Engine\Managers\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Header Files\Engine\Managers\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Header Files\Engine\Managers\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Header Files\Engine\Managers\State</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\Engine\Managers\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Engine\Managers\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>Header Files\Engine\Managers\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files\Engine\Managers\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Header Files\Engine\Managers\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\Engine\Managers\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleCollider.h">
+      <Filter>Header Files\Engine\Managers\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Engine\Managers\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Header Files\Engine\Managers\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="BOTTOMTEXT_State.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BOTTOMTEXT_Entity.h">
+      <Filter>Header Files\Game\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomManager.h">
+      <Filter>Header Files\Engine\Managers\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="StateOwner.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryItem.h">
+      <Filter>Header Files\Game\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstSwordItem.h">
+      <Filter>Header Files\Game\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="SwordItem.h">
+      <Filter>Header Files\Game\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerInfo.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Game\Entities\Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Header Files\Game\Entities\Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAvatar.h">
+      <Filter>Header Files\Game\Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstSwordEntity.h">
+      <Filter>Header Files\Game\Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SwordEntity.h">
+      <Filter>Header Files\Game\Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SwordProjectileEntity.h">
+      <Filter>Header Files\Game\Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Cave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Tiberius_Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Engine\Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Source Files\Engine\Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Source Files\Engine\Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files\Engine\Manager\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>Source Files\Engine\Manager\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteManager.cpp">
+      <Filter>Source Files\Engine\Manager\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Engine\Manager\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Source Files\Engine\Manager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Source Files\Engine\Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files\Engine\Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Source Files\Engine\Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleCollider.cpp">
+      <Filter>Source Files\Engine\Manager\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineConfig.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Engine\Manager\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Engine\Manager\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files\Engine\Manager\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomManager.cpp">
+      <Filter>Source Files\Engine\Manager\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="BOTTOMTEXT_Entity.cpp">
+      <Filter>Source Files\Game\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="BOTTOMTEXT_State.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateOwner.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstSwordItem.cpp">
+      <Filter>Source Files\Game\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAvatar.cpp">
+      <Filter>Source Files\Game\Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstSwordEntity.cpp">
+      <Filter>Source Files\Game\Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SwordEntity.cpp">
+      <Filter>Source Files\Game\Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SwordProjectileEntity.cpp">
+      <Filter>Source Files\Game\Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files\Game\Entities\Tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Game\Entities\Tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Cave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
