@@ -18,12 +18,14 @@ public:
 	SwordEntity();
 	virtual ~SwordEntity();
 	void reposition(PlayerAvatar* givenPlayer);
+	void setCollisionActive(bool givenActive);
 	SWORDDIRECTION getDirection();
 	SDL_Point getPosition();
 	Collider* getCollider() override;
 	ENTITYTYPE getType() override;
 	Sprite* getSprite() override;
 protected:
+	bool collisionActive = true;
 	Sprite* mySprite = nullptr;
 	Collider* myCollider = nullptr;
 	RenderManager* myRenderManager = nullptr;

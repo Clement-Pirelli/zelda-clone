@@ -12,7 +12,7 @@ FirstSwordItem::FirstSwordItem(){
 FirstSwordItem::~FirstSwordItem(){
 }
 
-void FirstSwordItem::use(PlayerAvatar * givenPlayer){
+void FirstSwordItem::use(PlayerAvatar* givenPlayer){
 	if (active == false) {
 		if (mySwordEntity == nullptr) {
 			mySwordEntity = new FirstSwordEntity(givenPlayer);
@@ -23,11 +23,13 @@ void FirstSwordItem::use(PlayerAvatar * givenPlayer){
 		Service<EntityManager>::getService()->addEntity(mySwordEntity);
 		active = true;
 	}
+	mySwordEntity->setCollisionActive(true);
 }
 
 void FirstSwordItem::stopUse(){
 	Service<EntityManager>::getService()->removeEntity(mySwordEntity);
 	active = false;
+	mySwordEntity->setCollisionActive(false);
 }
 
 void FirstSwordItem::useFullHealth(){

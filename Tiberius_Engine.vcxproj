@@ -168,6 +168,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BombEntity.h" />
     <ClInclude Include="BombItem.h" />
     <ClInclude Include="BOTTOMTEXT_State.h" />
     <ClInclude Include="Cave.h" />
@@ -211,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BombEntity.cpp" />
     <ClCompile Include="BombItem.cpp" />
     <ClCompile Include="BOTTOMTEXT_State.cpp" />
     <ClCompile Include="Cave.cpp" />

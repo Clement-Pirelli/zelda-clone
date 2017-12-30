@@ -4,16 +4,16 @@
 #include "Service.h"
 #include "Tile.h"
 #include "Obstacle.h"
+#include "Cave.h"
 #include "RenderManager.h"
 #include "EntityManager.h"
 
-SDL_Point Room::getSpecialDestination(){
-	return specialDestination;
+bool Room::getIfCave(){
+	return isCave;
 }
 
-void Room::setSpecialDestination(int givenRow, int givenColumn){
-	specialDestination.x = givenRow;
-	specialDestination.y = givenColumn;
+void Room::setAsCave(){
+	isCave = true;
 }
 
 int Room::getWidthInPixels(){
@@ -63,18 +63,17 @@ std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> Room::cre
 				tile = new Obstacle("../Assets/tiles.png", Room::tileWidth * i, Room::tileHeight * j, givenArray[i][j]);
 				returnArray[i][j] = tile;
 				break;
-			case ROOMTILETYPE::CAVE:
-				//TODO : IMPLEMENT CAVES
-				break;
 			case ROOMTILETYPE::HIDDEN_CAVE:
-				//TODO : IMPLEMENT CAVES
+				tile = new Cave("../Assets/tiles.png", Room::tileWidth * i, Room::tileHeight * j, givenArray[i][j]);
 				break;
 			case ROOMTILETYPE::GROUND:
+			case ROOMTILETYPE::NOTHING:
 				tile = new Tile("../Assets/tiles.png", Room::tileWidth * i, Room::tileHeight * j, givenArray[i][j]);
-				
 				break;
-			default:
-				tile = new Tile("../Assets/tiles.png", Room::tileWidth * i, Room::tileHeight * j, ROOMTILETYPE::CAVE);
+			case ROOMTILETYPE::CAVE:
+				Cave* cave = new Cave("../Assets/tiles.png", Room::tileWidth * i, Room::tileHeight * j, givenArray[i][j]);
+				cave->setOpened();
+				tile = cave;
 				break;
 			}
 			returnArray[i][j] = tile;
@@ -125,9 +124,7 @@ void Room::addTiles(){
 void Room::removeTiles(){
 	for (unsigned int i = 0; i < tiles.size(); i++) {
 		for (unsigned int j = 0; j < tiles[i].size(); j++) {
-			if (tiles[i][j] != nullptr) {
-				Service<EntityManager>::getService()->removeEntity(tiles[i][j]);
-			}
+			Service<EntityManager>::getService()->removeEntity(tiles[i][j]);
 		}
 	}
 }

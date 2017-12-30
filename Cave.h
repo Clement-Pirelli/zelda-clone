@@ -5,8 +5,10 @@ class Sprite;
 
 class Cave : public Obstacle{
 public:
-	Cave(std::string givenFilePath, int givenX, int givenY, ROOMTILETYPE givenTileType);
+	Cave(std::string givenFilePath, int givenX, int givenY, ROOMTILETYPE givenTileType, bool isOpened = false);
 	~Cave();
+	void setOpened();
+	SDL_Point getPosition();
 	Collider* getCollider() override;
 	void render() override;
 	void onCollision(Entity* otherEntity) override;

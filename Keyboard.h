@@ -3,13 +3,13 @@ class Keyboard{
 public:
 	Keyboard();
 	~Keyboard();
-	bool isKeyPressed(SDL_Scancode givenkey);
-	bool isKeyDown(SDL_Scancode givenkey);
-	bool isKeyReleased(SDL_Scancode givenkey);
-	void lateUpdate(float deltatime);
-	void handleEvents(SDL_Event &givenevent);
+	bool isKeyPressed(SDL_Scancode givenKey);
+	bool isKeyDown(SDL_Scancode givenKey);
+	bool isKeyReleased(SDL_Scancode givenKey);
+	void lateUpdate(float givenDeltaTime);
+	void handleEvents(SDL_Event &givenEvent);
 private:
-	void setKey(SDL_Scancode givenkey, bool keyvalue);
+	void setKey(SDL_Scancode givenKey, bool keyValue);
 	bool keys[SDL_NUM_SCANCODES];
 	bool keysLastFrame[SDL_NUM_SCANCODES];
 };

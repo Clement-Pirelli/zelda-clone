@@ -10,7 +10,7 @@
 GameState::GameState(){
 	myEntityManager = new EntityManager();
 	Service<EntityManager>::setService(myEntityManager);
-	PlayerAvatar* player = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, 100, 50);
+	PlayerAvatar* player = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, SDL_SCANCODE_V ,100, 50);
 	myEntityManager->addEntity(player);
 	myRoomManager = new RoomManager();
 	Service<RoomManager>::setService(myRoomManager);
@@ -28,10 +28,18 @@ GameState::GameState(){
 			std::array<std::array<ROOMTILETYPE, Room::heightInTiles>, Room::widthInTiles> tempArray;
 			for (unsigned int i = 0; i < Room::widthInTiles; i++) {
 				for (unsigned int j = 0; j < Room::heightInTiles; j++) {
-					if (j != 3) {
-						tempArray[i][j] = ROOMTILETYPE::GROUND;
+					if (i == 0 || j == 0 || i == Room::widthInTiles - 1) {
+						tempArray[i][j] = ROOMTILETYPE::ROCK_BOTTOM_MIDDLE;
 					} else {
-						tempArray[i][j] = ROOMTILETYPE::BUSH;
+						if ( i < 2 && j == Room::heightInTiles - 1 || i > 4 && j == Room::heightInTiles - 1) {
+							tempArray[i][j] = ROOMTILETYPE::ROCK_TOP_MIDDLE;
+						} else {
+							if (i == 1 && j == 1) {
+								tempArray[i][j] = ROOMTILETYPE::ROCK_BOTTOM_RIGHT;
+							} else {
+								tempArray[i][j] = ROOMTILETYPE::GROUND;
+							}
+						}
 					}
 				}
 			}
@@ -42,8 +50,8 @@ GameState::GameState(){
 		}
 
 /*
+		O X O
 		O O O
-		X O O
 		O O O
 */
 
@@ -52,16 +60,17 @@ GameState::GameState(){
 			std::array<std::array<ROOMTILETYPE, Room::heightInTiles>, Room::widthInTiles> tempArray;
 			for (unsigned int i = 0; i < Room::widthInTiles; i++) {
 				for (unsigned int j = 0; j < Room::heightInTiles; j++) {
-					tempArray[i][j] = ROOMTILETYPE::BUSH;
+					tempArray[i][j] = ROOMTILETYPE::GROUND;
 				}
 			}
 			tempRoom->setTiles(Room::createTiles(tempArray));
+			tempRoom->setAsCave();
 			myRoomManager->addRoom(tempRoom, 0, 1);
 		}
 
 /*
-		O X O
 		O O O
+		X O O
 		O O O
 */
 
@@ -113,10 +122,7 @@ std::string GameState::getNextState(){
 void GameState::checkCollision(){
 	std::vector<Entity*> entities = myEntityManager->getAllCollisionEntities();
 	for (unsigned int i = 0; i < entities.size(); i++) {
-		for (unsigned int j = 0; j < entities.size(); j++) {
-			if (j == i) {
-				continue;
-			}
+		for (unsigned int j = i + 1; j < entities.size(); j++) {
 			if (CollisionManager::checkIfColliding(entities[i], entities[j])) {
 				entities[i]->onCollision(entities[j]);
 				entities[j]->onCollision(entities[i]);
@@ -124,4 +130,3 @@ void GameState::checkCollision(){
 		}
 	}
 }
-

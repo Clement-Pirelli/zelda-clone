@@ -19,7 +19,8 @@ enum ROOMTILETYPE {
 	GROUND = 3,
 	CAVE = 4,
 	BUSH = 8,
-	HIDDEN_CAVE = 9
+	HIDDEN_CAVE = 9,
+	NOTHING = 1000
 };
 
 class Tile;
@@ -30,8 +31,8 @@ public:
 	static const int tileHeight = 32;
 	static const int widthInTiles = 20;
 	static const int heightInTiles = 15;
-	SDL_Point getSpecialDestination();
-	void setSpecialDestination(int givenRow, int givenColumn);
+	bool getIfCave();
+	void setAsCave();
 	static int getWidthInPixels();
 	static int getHeightInPixels();
 	Room(ROOMENEMYTYPE givenEnemyType);
@@ -42,7 +43,7 @@ public:
 	void addTiles();
 	void removeTiles();
 private:
-	SDL_Point specialDestination{ -1, -1};
+	bool isCave = false;
 	std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> tiles;
 	ROOMENEMYTYPE myEnemyType;
 	static const int enemySpawnAmount = 4;

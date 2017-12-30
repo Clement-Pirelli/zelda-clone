@@ -35,7 +35,7 @@ class SwordItem;
 
 class PlayerAvatar : public Entity{
 public:
-	PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey, SDL_Scancode givenUpKey, SDL_Scancode givenDownKey, SDL_Scancode givenSwordItemKey, int givenX, int givenY);
+	PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey, SDL_Scancode givenUpKey, SDL_Scancode givenDownKey, SDL_Scancode givenSwordItemKey, SDL_Scancode givenSecondItemKey, int givenX, int givenY);
 	~PlayerAvatar();
 	void update(float givenDeltaTime) override;
 	void render() override;
@@ -70,7 +70,8 @@ private:
 		rightKey,
 		upKey,
 		downKey,
-		swordItemKey;
+		swordItemKey,
+		secondItemKey;
 	PLAYERDIRECTION direction = PLAYERDIRECTION::UP;
 	PLAYERSTATE state = PLAYERSTATE::IDLE;
 	SDL_Point position;

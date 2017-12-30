@@ -9,17 +9,19 @@
 #include "RectangleCollider.h"
 #include "InventoryItem.h"
 #include "FirstSwordItem.h"
+#include "BombItem.h"
 #include "LayerInfo.h"
 #include "Room.h"
 #include <vector>
 
 
-PlayerAvatar::PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey, SDL_Scancode givenUpKey, SDL_Scancode givenDownKey, SDL_Scancode givenSwordItemKey, int givenX, int givenY) {
+PlayerAvatar::PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey, SDL_Scancode givenUpKey, SDL_Scancode givenDownKey, SDL_Scancode givenSwordItemKey, SDL_Scancode givenSecondItemKey, int givenX, int givenY) {
 	leftKey = givenLeftKey;
 	rightKey = givenRightKey;
 	upKey = givenUpKey;
 	downKey = givenDownKey;
 	swordItemKey = givenSwordItemKey;
+	secondItemKey = givenSecondItemKey;
 	position.x = givenX;
 	position.y = givenY;
 	//animation creation
@@ -71,9 +73,9 @@ PlayerAvatar::PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey
 	direction = PLAYERDIRECTION::DOWN;
 	myInputManager = Service<InputManager>::getService();
 	myRenderManager = Service<RenderManager>::getService();
-	myCollider = new RectangleCollider(givenX, givenY, getSprite()->getWidth(), getSprite()->getHeight());
+	myCollider = new RectangleCollider(position.x + 1, position.y, getSprite()->getWidth() - 1, getSprite()->getHeight());
 	swordItem = new FirstSwordItem();
-	//TODO : second item
+	secondItem = new BombItem();
 }
 
 PlayerAvatar::~PlayerAvatar(){
@@ -147,7 +149,7 @@ void PlayerAvatar::update(float givenDeltaTime) {
 		}
 		break;
 	}
-	myCollider->setPosition(position.x, position.y);
+	myCollider->setPosition(position.x + 1, position.y);
 	currentAnimation->tick(givenDeltaTime);
 }
 
@@ -169,16 +171,18 @@ SDL_Point PlayerAvatar::getPosition(){
 }
 
 void PlayerAvatar::onCollision(Entity* otherEntity){
-	if (otherEntity->getType() == ENTITYTYPE::ENTITY_OBSTACLE) {
-		
-		position.x = lastPosition.x;
-		position.y = lastPosition.y;
-		myCollider->setPosition(position.x, position.y);
-	}
 	if (otherEntity->getType() == ENTITYTYPE::ENTITY_CAVE) {
 		position.x = Room::getWidthInPixels() / 2;
-		position.y = Room::getHeightInPixels() - currentAnimation->getCurrentSprite()->getHeight();
+		position.y = Room::getHeightInPixels() - getSprite()->getHeight();
+	} else {
+		if (otherEntity->getType() == ENTITYTYPE::ENTITY_OBSTACLE) {
+			position.x = lastPosition.x;
+			position.y = lastPosition.y;
+			myCollider->setPosition(position.x, position.y);
+		}
 	}
+	
+	
 }
 
 ENTITYTYPE PlayerAvatar::getType(){
@@ -213,32 +217,34 @@ void PlayerAvatar::inputCheck(){
 	if (myInputManager->isKeyDown(swordItemKey)) {
 		state = PLAYERSTATE::PREPARING_TO_ATTACK;
 	} else {
-		if (myInputManager->isKeyDown(leftKey)) {
-			velocityX = -speed;
-			direction = PLAYERDIRECTION::LEFT;
-			state = PLAYERSTATE::MOVING;
-		}
-		else {
-			if (myInputManager->isKeyDown(rightKey)) {
-				velocityX = speed;
-				direction = PLAYERDIRECTION::RIGHT;
+		if (myInputManager->isKeyPressed(secondItemKey)) {
+			secondItem->use(this);
+		} else {
+			if (myInputManager->isKeyDown(leftKey)) {
+				velocityX = -speed;
+				direction = PLAYERDIRECTION::LEFT;
 				state = PLAYERSTATE::MOVING;
-			}
-			else {
-				if (myInputManager->isKeyDown(upKey)) {
-					velocityY = -speed;
-					direction = PLAYERDIRECTION::UP;
+			} else {
+				if (myInputManager->isKeyDown(rightKey)) {
+					velocityX = speed;
+					direction = PLAYERDIRECTION::RIGHT;
 					state = PLAYERSTATE::MOVING;
-				}
-				else {
-					if (myInputManager->isKeyDown(downKey)) {
-						velocityY = speed;
-						direction = PLAYERDIRECTION::DOWN;
+				} else {
+					if (myInputManager->isKeyDown(upKey)) {
+						velocityY = -speed;
+						direction = PLAYERDIRECTION::UP;
 						state = PLAYERSTATE::MOVING;
+					} else {
+						if (myInputManager->isKeyDown(downKey)) {
+							velocityY = speed;
+							direction = PLAYERDIRECTION::DOWN;
+							state = PLAYERSTATE::MOVING;
+						}
 					}
 				}
 			}
 		}
+		
 	}
 }
 

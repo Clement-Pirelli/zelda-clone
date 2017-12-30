@@ -15,7 +15,7 @@ SwordEntity::SwordEntity(){
 SwordEntity::~SwordEntity(){
 }
 
-void SwordEntity::reposition(PlayerAvatar * givenPlayer){
+void SwordEntity::reposition(PlayerAvatar* givenPlayer){
 	//we assume that every sword sprite is the same width and height
 	int playerWidth = givenPlayer->getSprite()->getWidth();
 	int playerHeight = givenPlayer->getSprite()->getHeight();
@@ -50,6 +50,10 @@ void SwordEntity::reposition(PlayerAvatar * givenPlayer){
 	}
 }
 
+void SwordEntity::setCollisionActive(bool givenActive){
+	collisionActive = givenActive;
+}
+
 SWORDDIRECTION SwordEntity::getDirection(){
 	return direction;
 }
@@ -58,14 +62,17 @@ SDL_Point SwordEntity::getPosition(){
 	return position;
 }
 
-Collider * SwordEntity::getCollider(){
-	return myCollider;
+Collider* SwordEntity::getCollider(){
+	if (collisionActive == true) {
+		return myCollider;
+	}
+	return nullptr;
 }
 
 ENTITYTYPE SwordEntity::getType(){
 	return ENTITYTYPE::ENTITY_SWORD;
 }
 
-Sprite * SwordEntity::getSprite(){
+Sprite* SwordEntity::getSprite(){
 	return mySprite;
 }

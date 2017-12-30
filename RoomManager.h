@@ -13,6 +13,7 @@ public:
 	int getCurrentRow();
 	int getCurrentColumn();
 	void changeRoom(int givenRow, int givenColumn);
+	void changeRoomFromCave();
 private:
 	bool roomChange = false;
 	int currentRow = 0;

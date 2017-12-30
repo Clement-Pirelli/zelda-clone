@@ -252,6 +252,9 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\Game\Entities\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="BombEntity.h">
+      <Filter>Header Files\Game\Entities\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tiberius_Engine.cpp">
@@ -355,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Game\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="BombEntity.cpp">
+      <Filter>Source Files\Game\Entities\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

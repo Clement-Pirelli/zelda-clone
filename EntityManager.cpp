@@ -57,7 +57,8 @@ void EntityManager::removeEntity(Entity* givenEntity){
 */
 std::vector<Entity*> EntityManager::getAllCollisionEntities(){
 	std::vector<Entity*> returnVector;
-	for (Entity* e : entities) {
+	std::vector<Entity*> temp = entities;
+	for (Entity* e : temp) {
 		if (e->getCollider() != nullptr) {
 			returnVector.push_back(e);
 		}
