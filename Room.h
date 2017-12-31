@@ -1,9 +1,10 @@
 #pragma once
 #include <array>
 #include "EngineConfig.h"
+#include <vector>
 
 enum ROOMENEMYTYPE {
-	PROJECTILE_ENEMY,
+	SHOOTING_ENEMY,
 	JUMPING_ENEMY,
 	MIXED,
 	NO_ENEMY
@@ -24,6 +25,7 @@ enum ROOMTILETYPE {
 };
 
 class Tile;
+class Enemy;
 
 class Room{
 public:
@@ -39,12 +41,16 @@ public:
 	~Room();
 	static std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> createTiles(std::array<std::array<ROOMTILETYPE,Room::heightInTiles>, Room::widthInTiles> givenArray);
 	void setTiles(std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> givenTileArray);
-	void spawn();
 	void addTiles();
 	void removeTiles();
+	void spawn();
+	void checkIfCleared();
+	void decrementEnemyCount();
 private:
 	bool isCave = false;
+	bool isCleared = false;
 	std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> tiles;
 	ROOMENEMYTYPE myEnemyType;
 	static const int enemySpawnAmount = 4;
+	int enemyCount = enemySpawnAmount;
 };

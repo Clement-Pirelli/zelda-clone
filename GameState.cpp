@@ -24,7 +24,7 @@ GameState::GameState(){
 */
 
 		{
-			Room* tempRoom = new Room(ROOMENEMYTYPE::NO_ENEMY);
+			Room* tempRoom = new Room(ROOMENEMYTYPE::SHOOTING_ENEMY);
 			std::array<std::array<ROOMTILETYPE, Room::heightInTiles>, Room::widthInTiles> tempArray;
 			for (unsigned int i = 0; i < Room::widthInTiles; i++) {
 				for (unsigned int j = 0; j < Room::heightInTiles; j++) {
@@ -46,7 +46,7 @@ GameState::GameState(){
 			tempRoom->setTiles(Room::createTiles(tempArray));
 			myRoomManager->addRoom(tempRoom, 0, 0);
 
-			tempRoom->addTiles();
+			myRoomManager->changeRoom(0, 0);
 		}
 
 /*

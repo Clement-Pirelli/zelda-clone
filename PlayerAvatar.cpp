@@ -29,43 +29,43 @@ PlayerAvatar::PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey
 		//walking down
 		{
 			std::vector<Sprite*> tempSprites;
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::WALK_DOWN_ONE * 32, 0, 32, 32));
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::WALK_DOWN_TWO * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_WALK_DOWN_ONE * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_WALK_DOWN_TWO * 32, 0, 32, 32));
 			walkingDownAnimation = new Animation(tempSprites, movementAnimationTime);
 		}
 		//walking up
 		{
 			std::vector<Sprite*> tempSprites;
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::WALK_UP_ONE * 32, 0, 32, 32));
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::WALK_UP_TWO * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_WALK_UP_ONE * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_WALK_UP_TWO * 32, 0, 32, 32));
 			walkingUpAnimation = new Animation(tempSprites, movementAnimationTime);
 		}
 		//walking horizontally
 		{
 			std::vector<Sprite*> tempSprites;
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::WALK_HORIZONTAL_ONE * 32, 0, 32, 32));
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::WALK_HORIZONTAL_TWO * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_WALK_HORIZONTAL_ONE * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_WALK_HORIZONTAL_TWO * 32, 0, 32, 32));
 			walkingHorizontallyAnimation = new Animation(tempSprites, movementAnimationTime);
 		}
 		//attacking down
 		{
 			std::vector<Sprite*> tempSprites;
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::ATTACK_DOWN * 32, 0, 32, 32));
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::ATTACK_DOWN * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_ATTACK_DOWN * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_ATTACK_DOWN * 32, 0, 32, 32));
 			attackingDownAnimation = new Animation(tempSprites, attackAnimationTime);
 		}
 		//attacking up
 		{
 			std::vector<Sprite*> tempSprites;
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::ATTACK_UP * 32, 0, 32, 32));
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::ATTACK_UP * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_ATTACK_UP * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_ATTACK_UP * 32, 0, 32, 32));
 			attackingUpAnimation = new Animation(tempSprites, attackAnimationTime);
 		}
 		//attacking horizontally
 		{
 			std::vector<Sprite*> tempSprites;
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::ATTACK_HORIZONTAL * 32, 0, 32, 32));
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", SPRITEINDEX::ATTACK_HORIZONTAL * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_ATTACK_HORIZONTAL * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", PLSPRITEINDEX::PL_ATTACK_HORIZONTAL * 32, 0, 32, 32));
 			AttackingHorizontallyAnimation = new Animation(tempSprites, attackAnimationTime);
 		}
 	}
@@ -73,8 +73,9 @@ PlayerAvatar::PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey
 	direction = PLAYERDIRECTION::DOWN;
 	myInputManager = Service<InputManager>::getService();
 	myRenderManager = Service<RenderManager>::getService();
-	myCollider = new RectangleCollider(position.x + 1, position.y, getSprite()->getWidth() - 1, getSprite()->getHeight());
+	myCollider = new RectangleCollider(position.x, position.y, getSprite()->getWidth(), getSprite()->getHeight());
 	swordItem = new FirstSwordItem();
+	//TODO : change this to make it be chosen in the inventory
 	secondItem = new BombItem();
 }
 
@@ -95,8 +96,11 @@ PlayerAvatar::~PlayerAvatar(){
 	attackingUpAnimation = nullptr;
 	delete AttackingHorizontallyAnimation;
 	AttackingHorizontallyAnimation = nullptr;
+	//When the inventory system is done, these will not be deleted here!
 	delete swordItem;
 	swordItem = nullptr;
+	delete secondItem;
+	secondItem = nullptr;
 }
 
 void PlayerAvatar::update(float givenDeltaTime) {
@@ -123,9 +127,8 @@ void PlayerAvatar::update(float givenDeltaTime) {
 		break;
 	case PLAYERSTATE::ATTACKING:
 		//set the state to idle when the animation is over
-		attackTimer += givenDeltaTime;
-		if (attackTimer >= attackAnimationTime * 2) {
-			attackTimer = 0.0f;
+		timer += givenDeltaTime;
+		if (timer >= attackAnimationTime * 2) {
 			//if full health, then spawn a projectile sword
 			if (halfHearts == maxHalfHearts) {
 				swordItem->useFullHealth();
@@ -135,6 +138,7 @@ void PlayerAvatar::update(float givenDeltaTime) {
 			//set the animation back to a walking animation, in case the attack animation hasn't ended yet
 			setWalkingAnimation();
 			state = PLAYERSTATE::IDLE;
+			timer = 0.0f;
 		}
 		break;
 	case PLAYERSTATE::MOVING:
@@ -148,8 +152,18 @@ void PlayerAvatar::update(float givenDeltaTime) {
 			state = PLAYERSTATE::IDLE;
 		}
 		break;
+	case PLAYERSTATE::KNOCKED_BACK:
+		currentAnimation->setIfActive(false);
+		position.x += velocityX;
+		position.y += velocityY;
+		timer += givenDeltaTime;
+		if (timer >= knockBackTime) {
+			state = PLAYERSTATE::IDLE;
+			timer = 0.0f;
+		}
+		break;
 	}
-	myCollider->setPosition(position.x + 1, position.y);
+	myCollider->setPosition(position.x, position.y);
 	currentAnimation->tick(givenDeltaTime);
 }
 

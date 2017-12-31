@@ -7,22 +7,25 @@ enum PLAYERDIRECTION {
 	LEFT,
 	RIGHT
 };
-enum SPRITEINDEX {
-	WALK_DOWN_ONE = 0,
-	WALK_DOWN_TWO = 1,
-	WALK_UP_ONE = 2,
-	WALK_UP_TWO = 3,
-	WALK_HORIZONTAL_ONE = 4,
-	WALK_HORIZONTAL_TWO = 5,
-	ATTACK_DOWN = 6,
-	ATTACK_UP = 7,
-	ATTACK_HORIZONTAL = 8
+
+enum PLSPRITEINDEX {
+	PL_WALK_DOWN_ONE = 0,
+	PL_WALK_DOWN_TWO = 1,
+	PL_WALK_UP_ONE = 2,
+	PL_WALK_UP_TWO = 3,
+	PL_WALK_HORIZONTAL_ONE = 4,
+	PL_WALK_HORIZONTAL_TWO = 5,
+	PL_ATTACK_DOWN = 6,
+	PL_ATTACK_UP = 7,
+	PL_ATTACK_HORIZONTAL = 8
 };
+
 enum PLAYERSTATE {
 	PREPARING_TO_ATTACK,
 	ATTACKING,
 	MOVING,
-	IDLE
+	IDLE,
+	KNOCKED_BACK
 };
 
 class InputManager;
@@ -83,5 +86,6 @@ private:
 	const int speed = 2;
 	const float attackAnimationTime = 0.2f;
 	const float movementAnimationTime = 0.2f;
-	float attackTimer = 0.0f;
+	const float knockBackTime = 0.3f;
+	float timer = 0.0f;
 };

@@ -68,7 +68,7 @@ void SwordProjectileEntity::render(){
 	myRenderManager->debugDrawRect(myCollider->getRectangle());
 }
 
-Sprite * SwordProjectileEntity::getSprite(){
+Sprite* SwordProjectileEntity::getSprite(){
 	return mySprite;
 }
 
@@ -76,7 +76,7 @@ Collider* SwordProjectileEntity::getCollider(){
 	return myCollider;
 }
 
-void SwordProjectileEntity::onCollision(Entity * otherEntity){
+void SwordProjectileEntity::onCollision(Entity* otherEntity){
 	if (otherEntity->getType() == ENTITYTYPE::ENTITY_ENEMY) {
 		delete this;
 	}

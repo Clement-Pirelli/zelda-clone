@@ -255,6 +255,15 @@
     <ClInclude Include="BombEntity.h">
       <Filter>Header Files\Game\Entities\Player</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyBulletEntity.h">
+      <Filter>Header Files\Game\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootingEnemy.h">
+      <Filter>Header Files\Game\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tiberius_Engine.cpp">
@@ -361,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="BombEntity.cpp">
       <Filter>Source Files\Game\Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBulletEntity.cpp">
+      <Filter>Source Files\Game\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootingEnemy.cpp">
+      <Filter>Source Files\Game\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

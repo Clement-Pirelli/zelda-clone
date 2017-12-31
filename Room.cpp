@@ -7,6 +7,8 @@
 #include "Cave.h"
 #include "RenderManager.h"
 #include "EntityManager.h"
+#include "Utilities.h"
+#include "ShootingEnemy.h"
 
 bool Room::getIfCave(){
 	return isCave;
@@ -34,6 +36,7 @@ Room::Room(ROOMENEMYTYPE givenEnemyType){
 }
 
 Room::~Room(){
+	checkIfCleared();
 	removeTiles();
 	for (unsigned int i = 0; i < tiles.size() - 1; i++) {
 		for (unsigned int j = 0; j < tiles[i].size() - 1; j++) {
@@ -45,7 +48,6 @@ Room::~Room(){
 	}
 }
 
-//TODO: factory which creates tiles according to an array of enums
 std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> Room::createTiles(std::array<std::array<ROOMTILETYPE, Room::heightInTiles>, Room::widthInTiles> givenArray){
 	std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> returnArray;
 	Tile* tile = nullptr;
@@ -59,7 +61,6 @@ std::array<std::array<Tile*, Room::heightInTiles>, Room::widthInTiles> Room::cre
 			case ROOMTILETYPE::ROCK_TOP_MIDDLE:
 			case ROOMTILETYPE::ROCK_TOP_RIGHT:
 			case ROOMTILETYPE::BUSH:
-
 				tile = new Obstacle("../Assets/tiles.png", Room::tileWidth * i, Room::tileHeight * j, givenArray[i][j]);
 				returnArray[i][j] = tile;
 				break;
@@ -92,23 +93,64 @@ void Room::setTiles(std::array<std::array<Tile*, Room::heightInTiles>, Room::wid
 
 //TODO : factory which spawns enemies according to their enemy type at the start of the game
 void Room::spawn(){
-	switch (myEnemyType) {
-	case ROOMENEMYTYPE::JUMPING_ENEMY:
-		for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
-			//spawn jumping enemies randomly in the middle of the room, being careful as to not collide with anything
+	if (isCleared == false) {
+		std::vector<Enemy*> enemies;
+		switch (myEnemyType) {
+		case ROOMENEMYTYPE::JUMPING_ENEMY:
+			for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
+				//spawn jumping enemies randomly in the middle of the room, being careful as to not collide with anything || choose spawn points and don't put anything there in any room with enemies
+
+				/*bool spawned = false;
+				while (spawned == false) {
+				int rRow = Utilities::random(0.3 * Room::widthInTiles, 0.6 * Room::widthInTiles);
+				int rColumn = Utilities::random(0.3 * Room::heightInTiles, 0.6 * Room::heightInTiles);
+
+				}*/
+			}
+			break;
+		case ROOMENEMYTYPE::SHOOTING_ENEMY:
+			for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
+				//spawn projectile enemies randomly in the middle of the room, being careful as to not collide with anything
+				bool spawned = false;
+				while (spawned == false) {
+					int rRow = Utilities::random(static_cast<int>(0.3 * Room::widthInTiles), static_cast<int>(0.6 * Room::widthInTiles));
+					int rColumn = Utilities::random(static_cast<int>(0.3 * Room::heightInTiles), static_cast<int>(0.6 * Room::heightInTiles));
+					if (tiles[rRow][rColumn]->getType() != ENTITYTYPE::ENTITY_OBSTACLE) {
+						int okCount = 0;
+						for (auto e : enemies) {
+							if (e->getPosition().x == rRow * Room::widthInTiles && e->getPosition().y == rColumn * Room::heightInTiles) {
+								break;
+							} else {
+								okCount++;
+							}
+						}
+						if (okCount >= enemies.size()) {
+							new ShootingEnemy(rRow * Room::widthInTiles, rColumn * Room::heightInTiles);
+							spawned = true;
+						}
+					}
+				}
+			}
+			break;
+		case ROOMENEMYTYPE::MIXED:
+			for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
+				//spawn half of both enemies randomly in the middle of the room, being careful as to not collide with anything
+			}
+			break;
 		}
-		break;
-	case ROOMENEMYTYPE::PROJECTILE_ENEMY:
-		for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
-			//spawn projectile enemies randomly in the middle of the room, being careful as to not collide with anything
-		}
-		break;
-	case ROOMENEMYTYPE::MIXED:
-		for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
-			//spawn half of both enemies randomly in the middle of the room, being careful as to not collide with anything
-		}
-		break;
 	}
+}
+
+void Room::checkIfCleared(){
+	if (enemyCount <= 0) {
+		isCleared = true;
+	} else {
+		int enemyCount = enemySpawnAmount;
+	}
+}
+
+void Room::decrementEnemyCount(){
+	enemyCount--;
 }
 
 void Room::addTiles(){
