@@ -23,10 +23,6 @@ void Cave::setOpened(){
 	opened = true;
 }
 
-SDL_Point Cave::getPosition(){
-	return position;
-}
-
 Collider* Cave::getCollider(){
 	return myCollider;
 }

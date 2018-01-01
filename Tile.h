@@ -17,6 +17,7 @@ public:
 	virtual Collider* getCollider() override { return nullptr; };
 	virtual void onCollision(Entity* otherEntity) override {};
 	virtual ENTITYTYPE getType() override;
+	SDL_Point getPosition() override;
 protected:
 	Sprite* mySprite = nullptr;
 	RenderManager* myRenderManager = nullptr;

@@ -31,6 +31,7 @@ public:
 	void onCollision(Entity* otherEntity) override;
 	Sprite* getSprite() override;
 private:
+	SDL_Point lastPosition;
 	SHOOTINGENEMYSTATE state = SH_SPAWNING;
 	Animation* walkingDownAnimation = nullptr,
 		*walkingUpAnimation = nullptr,
@@ -41,6 +42,7 @@ private:
 	float timer = 0.0f;
 	const float spawnTimer = 1.0f;
 	const float walkTimer = 4.0f;
+	const float knockbackTimer = 1.0f;
 	int velocityX = 0;
 	int velocityY = 0;
 	ENEMYDIRECTION direction = ENEMYDIRECTION::E_UP;

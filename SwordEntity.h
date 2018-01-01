@@ -20,7 +20,7 @@ public:
 	void reposition(PlayerAvatar* givenPlayer);
 	void setCollisionActive(bool givenActive);
 	SWORDDIRECTION getDirection();
-	SDL_Point getPosition();
+	SDL_Point getPosition() override;
 	Collider* getCollider() override;
 	ENTITYTYPE getType() override;
 	Sprite* getSprite() override;

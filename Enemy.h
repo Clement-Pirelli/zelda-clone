@@ -19,7 +19,7 @@ public:
 	int getDamage();
 	Collider* getCollider() override;
 	ENTITYTYPE getType() override;
-	SDL_Point getPosition();
+	SDL_Point getPosition() override;
 protected:
 	SDL_Point position;
 	RenderManager* myRenderManager = nullptr;

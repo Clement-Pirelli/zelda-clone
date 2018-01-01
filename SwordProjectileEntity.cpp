@@ -85,3 +85,7 @@ void SwordProjectileEntity::onCollision(Entity* otherEntity){
 ENTITYTYPE SwordProjectileEntity::getType(){
 	return ENTITYTYPE::ENTITY_SWORD;
 }
+
+SDL_Point SwordProjectileEntity::getPosition(){
+	return position;
+}

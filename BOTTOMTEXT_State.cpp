@@ -27,8 +27,11 @@ BOTTOMTEXT_State::BOTTOMTEXT_State(){
 	tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/link.png", 4 * 16, 0, 16, 16));
 	myAnimation = new Animation(tempSprites);
 	myEntityManager = new EntityManager();
+	/*
 	myPlayer = new BOTTOMTEXT_Entity(SDL_SCANCODE_A, SDL_SCANCODE_D, 100, 100);
 	myEnemy = new BOTTOMTEXT_Entity(SDL_SCANCODE_J, SDL_SCANCODE_L, 300, 100);
+	
+	*/
 	myEntityManager->addEntity(myPlayer);
 	myEntityManager->addEntity(myEnemy);
 	myInputManager = Service<InputManager>::getService();

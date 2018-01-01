@@ -12,6 +12,7 @@
 #include "BombItem.h"
 #include "LayerInfo.h"
 #include "Room.h"
+#include "EnemyBulletEntity.h"
 #include <vector>
 
 
@@ -104,10 +105,11 @@ PlayerAvatar::~PlayerAvatar(){
 }
 
 void PlayerAvatar::update(float givenDeltaTime) {
-	lastPosition.x = position.x;
-	lastPosition.y = position.y;
-	velocityX = 0;
-	velocityY = 0;
+	lastPosition = position;
+	if (state != PLAYERSTATE::KNOCKED_BACK){
+		velocityX = 0;
+		velocityY = 0;
+	}
 	switch (state) {
 	case PLAYERSTATE::IDLE:
 		//set animation as idle
@@ -128,9 +130,9 @@ void PlayerAvatar::update(float givenDeltaTime) {
 	case PLAYERSTATE::ATTACKING:
 		//set the state to idle when the animation is over
 		timer += givenDeltaTime;
-		if (timer >= attackAnimationTime * 2) {
+		if (timer >= attackAnimationTime * 2){
 			//if full health, then spawn a projectile sword
-			if (halfHearts == maxHalfHearts) {
+			if (halfHearts == maxHalfHearts){
 				swordItem->useFullHealth();
 			}
 			//stop using the sword
@@ -148,7 +150,7 @@ void PlayerAvatar::update(float givenDeltaTime) {
 		setWalkingAnimation();
 		position.x += velocityX;
 		position.y += velocityY;
-		if (velocityX == 0 && velocityY == 0) {
+		if (velocityX == 0 && velocityY == 0){
 			state = PLAYERSTATE::IDLE;
 		}
 		break;
@@ -157,7 +159,7 @@ void PlayerAvatar::update(float givenDeltaTime) {
 		position.x += velocityX;
 		position.y += velocityY;
 		timer += givenDeltaTime;
-		if (timer >= knockBackTime) {
+		if (timer >= knockbackTime){
 			state = PLAYERSTATE::IDLE;
 			timer = 0.0f;
 		}
@@ -169,7 +171,6 @@ void PlayerAvatar::update(float givenDeltaTime) {
 
 void PlayerAvatar::render(){
 	myRenderManager->draw(currentAnimation->getCurrentSprite(), position.x, position.y, LayerInfo::playerLayer);
-	myRenderManager->debugDrawRect(myCollider->getRectangle());
 }
 
 Sprite* PlayerAvatar::getSprite(){
@@ -185,18 +186,40 @@ SDL_Point PlayerAvatar::getPosition(){
 }
 
 void PlayerAvatar::onCollision(Entity* otherEntity){
-	if (otherEntity->getType() == ENTITYTYPE::ENTITY_CAVE) {
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_CAVE){
 		position.x = Room::getWidthInPixels() / 2;
 		position.y = Room::getHeightInPixels() - getSprite()->getHeight();
 	} else {
-		if (otherEntity->getType() == ENTITYTYPE::ENTITY_OBSTACLE) {
+		if (otherEntity->getType() == ENTITYTYPE::ENTITY_OBSTACLE){
 			position.x = lastPosition.x;
 			position.y = lastPosition.y;
 			myCollider->setPosition(position.x, position.y);
 		}
 	}
-	
-	
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_BULLET && state != PLAYERSTATE::KNOCKED_BACK){
+		//we assume that the only entity of type "ENTITY_BULLET" is EnemyBulletEntity
+		EnemyBulletEntity* bullet = static_cast<EnemyBulletEntity*>(otherEntity);
+		if (bullet->getVelocity().x < 0 && direction != PLAYERDIRECTION::RIGHT){
+			velocityX -= knockbackSpeed;
+			velocityY = 0;
+			state = PLAYERSTATE::KNOCKED_BACK;
+		}
+		if (bullet->getVelocity().x > 0 && direction != PLAYERDIRECTION::LEFT){
+			velocityX += knockbackSpeed;
+			velocityY = 0;
+			state = PLAYERSTATE::KNOCKED_BACK;
+		}
+		if (bullet->getVelocity().y < 0 && direction != PLAYERDIRECTION::DOWN){
+			velocityY -= knockbackSpeed;
+			velocityX = 0;
+			state = PLAYERSTATE::KNOCKED_BACK;
+		}
+		if (bullet->getVelocity().y > 0 && direction != PLAYERDIRECTION::UP){
+			velocityY += knockbackSpeed;
+			velocityX = 0;
+			state = PLAYERSTATE::KNOCKED_BACK;
+		}
+	}
 }
 
 ENTITYTYPE PlayerAvatar::getType(){

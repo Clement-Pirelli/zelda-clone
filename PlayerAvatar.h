@@ -45,7 +45,7 @@ public:
 	void onCollision(Entity* otherEntity) override;
 	Sprite* getSprite() override;
 	Collider* getCollider() override;
-	SDL_Point getPosition();
+	SDL_Point getPosition() override;
 	ENTITYTYPE getType() override;
 	PLAYERDIRECTION getDirection();
 	int getHealth();
@@ -84,8 +84,9 @@ private:
 	int halfHearts = 6;
 	int maxHalfHearts = 6;
 	const int speed = 2;
+	const int knockbackSpeed = 3;
 	const float attackAnimationTime = 0.2f;
 	const float movementAnimationTime = 0.2f;
-	const float knockBackTime = 0.3f;
+	const float knockbackTime = 0.3f;
 	float timer = 0.0f;
 };

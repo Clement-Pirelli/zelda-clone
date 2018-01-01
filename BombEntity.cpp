@@ -53,6 +53,10 @@ Collider* BombEntity::getCollider(){
 	return myCollider;
 }
 
+SDL_Point BombEntity::getPosition(){
+	return position;
+}
+
 void BombEntity::onCollision(Entity* otherEntity){
 }
 

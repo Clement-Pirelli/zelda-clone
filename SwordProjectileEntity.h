@@ -16,6 +16,7 @@ public:
 	Collider* getCollider() override;
 	void onCollision(Entity* otherEntity) override;
 	ENTITYTYPE getType() override;
+	SDL_Point getPosition() override;
 private:
 	Sprite* mySprite = nullptr;
 	RectangleCollider* myCollider = nullptr;

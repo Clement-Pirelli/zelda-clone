@@ -11,6 +11,7 @@
 #include "Utilities.h"
 #include "RoomManager.h"
 #include "Room.h"
+#include "EnemyBulletEntity.h"
 
 ShootingEnemy::ShootingEnemy(int givenX, int givenY){
 	Service<EntityManager>::getService()->addEntity(this);
@@ -29,7 +30,7 @@ ShootingEnemy::ShootingEnemy(int givenX, int givenY){
 		{
 			std::vector<Sprite*> tempSprites;
 			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/shooting_enemy.png", SHSPRITEINDEX::PL_WALK_UP_ONE * 32, 0, 32, 32));
-			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/shooting_enemy.png", SHSPRITEINDEX::PL_WALK_UP_ONE * 32, 0, 32, 32));
+			tempSprites.push_back(Service<SpriteManager>::getService()->createSprite("../Assets/shooting_enemy.png", SHSPRITEINDEX::PL_WALK_UP_TWO * 32, 0, 32, 32));
 			walkingUpAnimation = new Animation(tempSprites, movementAnimationTime);
 		}
 		//walking left
@@ -68,6 +69,7 @@ ShootingEnemy::~ShootingEnemy(){
 }
 
 void ShootingEnemy::update(float givenDeltaTime){
+	lastPosition = position;
 	if (health <= 0) {
 		Service<RoomManager>::getService()->getCurrentRoom()->decrementEnemyCount();
 		delete this;
@@ -100,9 +102,18 @@ void ShootingEnemy::update(float givenDeltaTime){
 		}
 		break;
 	case SHOOTINGENEMYSTATE::SH_SHOOTING:
-		
+		new EnemyBulletEntity(position.x, position.y, direction);
+		state = SHOOTINGENEMYSTATE::SH_WAITING_TO_WALK;
 		break;
 	case SHOOTINGENEMYSTATE::SH_KNOCKED_BACK:
+		currentAnimation->setIfActive(false);
+		position.x += velocityX;
+		position.y += velocityY;
+		timer += givenDeltaTime;
+		if (timer >= knockbackTimer) {
+			currentAnimation->setIfActive(true);
+			state = SHOOTINGENEMYSTATE::SH_WAITING_TO_WALK;
+		}
 		break;
 	}
 	currentAnimation->tick(givenDeltaTime);
@@ -117,10 +128,12 @@ void ShootingEnemy::render(){
 
 void ShootingEnemy::onCollision(Entity* otherEntity){
 	if (otherEntity->getType() == ENTITYTYPE::ENTITY_OBSTACLE || otherEntity->getType() == ENTITYTYPE::ENTITY_CAVE) {
-
+		position = lastPosition;
 	}
 	if (otherEntity->getType() == ENTITYTYPE::ENTITY_SWORD) {
 		if (state != SHOOTINGENEMYSTATE::SH_KNOCKED_BACK) {
+			velocityX = 0;
+			velocityY = 0;
 			health--;
 			timer = 0.0f;
 			state = SHOOTINGENEMYSTATE::SH_KNOCKED_BACK;

@@ -8,7 +8,6 @@ public:
 	Cave(std::string givenFilePath, int givenX, int givenY, ROOMTILETYPE givenTileType, bool isOpened = false);
 	~Cave();
 	void setOpened();
-	SDL_Point getPosition();
 	Collider* getCollider() override;
 	void render() override;
 	void onCollision(Entity* otherEntity) override;

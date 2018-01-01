@@ -29,4 +29,5 @@ public:
 	virtual Collider* getCollider() = 0;
 	virtual void onCollision(Entity* otherEntity) = 0;
 	virtual ENTITYTYPE getType() = 0;
+	virtual SDL_Point getPosition() = 0;
 };

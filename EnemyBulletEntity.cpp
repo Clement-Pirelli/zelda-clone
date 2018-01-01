@@ -12,9 +12,10 @@
 #include "LayerInfo.h"
 
 EnemyBulletEntity::EnemyBulletEntity(int givenX, int givenY, ENEMYDIRECTION givenDirection){
+	position.x = givenX;
+	position.y = givenY;
 	Service<EntityManager>::getService()->addEntity(this);
 	myRenderManager = Service<RenderManager>::getService();
-	
 	switch (givenDirection) {
 	case ENEMYDIRECTION::E_DOWN:
 		velocityY += speed;
@@ -35,7 +36,7 @@ EnemyBulletEntity::EnemyBulletEntity(int givenX, int givenY, ENEMYDIRECTION give
 		mySprite->setFlip(SDL_FLIP_HORIZONTAL);
 		break;
 	}
-	myCollider = new RectangleCollider(position.x, position.y, getSprite()->getWidth(), getSprite()->getHeight());
+	myCollider = new RectangleCollider(position.x, position.y, mySprite->getWidth(), mySprite->getHeight());
 }
 
 EnemyBulletEntity::~EnemyBulletEntity(){
@@ -49,17 +50,19 @@ EnemyBulletEntity::~EnemyBulletEntity(){
 void EnemyBulletEntity::update(float givenDeltaTime){
 	position.x += velocityX;
 	position.y += velocityY;
+	myCollider->setPosition(position.x, position.y);
 	if (position.x < 0
 		|| position.x + mySprite->getWidth() > Service<RoomManager>::getService()->getCurrentRoom()->getWidthInPixels()
 		|| position.y < 0
 		|| position.y + mySprite->getHeight() >Service<RoomManager>::getService()->getCurrentRoom()->getHeightInPixels()
-		) {
+		|| collidedWithPlayer == true) {
 		delete this;
 	}
 }
 
 void EnemyBulletEntity::render(){
 	myRenderManager->draw(mySprite, position.x, position.y, LayerInfo::bulletLayer);
+	myRenderManager->debugDrawRect(myCollider->getRectangle());
 }
 
 Sprite* EnemyBulletEntity::getSprite(){
@@ -71,8 +74,20 @@ Collider* EnemyBulletEntity::getCollider(){
 }
 
 void EnemyBulletEntity::onCollision(Entity* otherEntity){
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_PLAYER) {
+		collidedWithPlayer = true;
+	}
 }
 
 ENTITYTYPE EnemyBulletEntity::getType(){
 	return ENTITYTYPE::ENTITY_BULLET;
+}
+
+SDL_Point EnemyBulletEntity::getPosition(){
+	return position;
+}
+
+SDL_Point EnemyBulletEntity::getVelocity(){
+	SDL_Point returnPoint{ velocityX, velocityY };
+	return returnPoint;
 }

@@ -12,6 +12,7 @@ public:
 	void render() override;
 	Sprite* getSprite() override;
 	Collider* getCollider() override;
+	SDL_Point getPosition();
 	void onCollision(Entity* otherEntity) override;
 	ENTITYTYPE getType() override;
 private:

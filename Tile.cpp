@@ -32,3 +32,7 @@ Sprite* Tile::getSprite(){
 ENTITYTYPE Tile::getType(){
 	return ENTITYTYPE::ENTITY_TILE;
 }
+
+SDL_Point Tile::getPosition(){
+	return position;
+}

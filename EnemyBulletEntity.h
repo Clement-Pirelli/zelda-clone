@@ -17,7 +17,10 @@ public:
 	Collider* getCollider();
 	void onCollision(Entity* otherEntity);
 	ENTITYTYPE getType();
+	SDL_Point getPosition();
+	SDL_Point getVelocity();
 private:
+	bool collidedWithPlayer = false;
 	const int speed = 5;
 	int velocityX = 0;
 	int velocityY = 0;
