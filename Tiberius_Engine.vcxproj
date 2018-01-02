@@ -183,6 +183,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InventoryItem.h" />
+    <ClInclude Include="JumpingEnemy.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="LayerInfo.h" />
     <ClInclude Include="Mouse.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="JumpingEnemy.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Music.cpp" />

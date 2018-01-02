@@ -19,14 +19,17 @@ public:
 	ENTITYTYPE getType();
 	SDL_Point getPosition();
 	SDL_Point getVelocity();
+	int getDamage();
 private:
 	bool collidedWithPlayer = false;
 	const int speed = 5;
-	int velocityX = 0;
-	int velocityY = 0;
+	const int damage = 2;
 	SDL_Point position;
+	SDL_Point velocity;
 	Sprite* mySprite = nullptr;
 	RectangleCollider* myCollider = nullptr;
 	RenderManager* myRenderManager = nullptr;
+	std::string verticalSpriteFilePath = "../Assets/bullet.png";
+	std::string horizontalSpriteFilePath = "../Assets/bullet_horizontal.png";
 };
 

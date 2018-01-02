@@ -54,9 +54,11 @@ public:
 	void setPositionX(int givenPosition);
 	void setPositionY(int givenPosition);
 private:
+	void createAnimations();
 	void inputCheck();
 	void setWalkingAnimation();
 	void setAttackingAnimation();
+	void setKnockback(int givenXKnockback, int givenYKnockback, int givenDamage);
 	Animation* walkingDownAnimation = nullptr,
 		*walkingUpAnimation = nullptr,
 		*walkingHorizontallyAnimation = nullptr,
@@ -79,8 +81,7 @@ private:
 	PLAYERSTATE state = PLAYERSTATE::IDLE;
 	SDL_Point position;
 	SDL_Point lastPosition;
-	int velocityX = 0;
-	int velocityY = 0;
+	SDL_Point velocity;
 	int halfHearts = 6;
 	int maxHalfHearts = 6;
 	const int speed = 2;

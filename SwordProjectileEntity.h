@@ -17,12 +17,16 @@ public:
 	void onCollision(Entity* otherEntity) override;
 	ENTITYTYPE getType() override;
 	SDL_Point getPosition() override;
+	SDL_Point getVelocity();
+	int getDamage();
 private:
+	bool collidedWithEnemy = false;
 	Sprite* mySprite = nullptr;
 	RectangleCollider* myCollider = nullptr;
 	RenderManager* myRenderManager;
 	SDL_Point position;
-	SDL_Point velocity{ 0,0 };
+	SDL_Point velocity;
 	const int speed = 4;
+	const int damage = 1;
 };
 

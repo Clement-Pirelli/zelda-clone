@@ -20,19 +20,23 @@ SwordProjectileEntity::SwordProjectileEntity(FirstSwordEntity* givenSword){
 		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/sword_vertical.png", 0, 0, 16, 32);
 		mySprite->setFlip(SDL_FLIP_VERTICAL);
 		velocity.y = speed;
+		velocity.x = 0;
 		break;
 	case SWORDDIRECTION::S_UP:
 		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/sword_vertical.png", 0, 0, 16, 32);
 		velocity.y = -speed;
+		velocity.x = 0;
 		break;
 	case SWORDDIRECTION::S_RIGHT:
 		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/sword.png", 0, 0, 32, 16);
 		velocity.x = speed;
+		velocity.y = 0;
 		break;
 	case SWORDDIRECTION::S_LEFT:
 		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/sword.png", 0, 0, 32, 16);
 		mySprite->setFlip(SDL_FLIP_HORIZONTAL);
 		velocity.x = -speed;
+		velocity.y = 0;
 		break;
 	}
 	myCollider = new RectangleCollider(position.x, position.y, mySprite->getWidth(), mySprite->getHeight());
@@ -55,10 +59,8 @@ void SwordProjectileEntity::update(float givenDeltaTime){
 		|| position.x + mySprite->getWidth() > Service<RoomManager>::getService()->getCurrentRoom()->getWidthInPixels()
 		|| position.y < 0
 		|| position.y + mySprite->getHeight() >Service<RoomManager>::getService()->getCurrentRoom()->getHeightInPixels()
-		) {
-		delete this;
-	}
-	if (Service<RoomManager>::getService()->getRoomChange() == true) {
+		|| Service<RoomManager>::getService()->getRoomChange() == true
+		|| collidedWithEnemy == true) {
 		delete this;
 	}
 }
@@ -78,14 +80,22 @@ Collider* SwordProjectileEntity::getCollider(){
 
 void SwordProjectileEntity::onCollision(Entity* otherEntity){
 	if (otherEntity->getType() == ENTITYTYPE::ENTITY_ENEMY) {
-		delete this;
+		collidedWithEnemy = true;
 	}
 }
 
 ENTITYTYPE SwordProjectileEntity::getType(){
-	return ENTITYTYPE::ENTITY_SWORD;
+	return ENTITYTYPE::ENTITY_PROJECTILE_SWORD;
 }
 
 SDL_Point SwordProjectileEntity::getPosition(){
 	return position;
+}
+
+SDL_Point SwordProjectileEntity::getVelocity(){
+	return velocity;
+}
+
+int SwordProjectileEntity::getDamage(){
+	return damage;
 }

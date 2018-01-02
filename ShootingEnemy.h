@@ -14,6 +14,7 @@ enum SHSPRITEINDEX {
 
 enum SHOOTINGENEMYSTATE {
 	SH_SHOOTING,
+	SH_WAITING_TO_SHOOT,
 	SH_WALKING,
 	SH_WAITING_TO_WALK,
 	SH_SPAWNING,
@@ -31,6 +32,9 @@ public:
 	void onCollision(Entity* otherEntity) override;
 	Sprite* getSprite() override;
 private:
+	void chooseWalkingDirection();
+	void setKnockback(int givenXKnockback, int givenYKnockback, int givenDamage);
+	void createAnimations();
 	SDL_Point lastPosition;
 	SHOOTINGENEMYSTATE state = SH_SPAWNING;
 	Animation* walkingDownAnimation = nullptr,
@@ -38,14 +42,14 @@ private:
 		*walkingLeftAnimation = nullptr,
 		*walkingRightAnimation = nullptr,
 		*currentAnimation = nullptr;
-	float movementAnimationTime = 0.3f;
+	const float movementAnimationTime = 0.3f;
+	const float shootingWaitTimer = 1.0f;
+	const float spawnTimer = 2.0f;
+	const float walkTimer = 3.0f;
+	const float knockbackTimer = 0.5f;
 	float timer = 0.0f;
-	const float spawnTimer = 1.0f;
-	const float walkTimer = 4.0f;
-	const float knockbackTimer = 1.0f;
-	int velocityX = 0;
-	int velocityY = 0;
-	ENEMYDIRECTION direction = ENEMYDIRECTION::E_UP;
-	void chooseWalkingDirection();
+	ENEMYDIRECTION direction;
+	int speed = 1;
+	int knockbackSpeed = 3;
 };
 

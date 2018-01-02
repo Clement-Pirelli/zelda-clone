@@ -20,13 +20,14 @@ public:
 	Collider* getCollider() override;
 	ENTITYTYPE getType() override;
 	SDL_Point getPosition() override;
+	SDL_Point getVelocity();
 protected:
 	SDL_Point position;
+	SDL_Point velocity;
 	RenderManager* myRenderManager = nullptr;
 	RectangleCollider* myCollider = nullptr;
 	//the unit for these variable is healf hearts
-	int health = 2;
-	int damage = 1;
-	int speed = 1;
+	int damage;
+	int health;
 };
 

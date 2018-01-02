@@ -28,6 +28,7 @@ FirstSwordEntity::~FirstSwordEntity(){
 }
 
 void FirstSwordEntity::update(float givenDeltaTime){
+	myCollider->setPosition(position.x, position.y);
 }
 
 void FirstSwordEntity::render(){
@@ -35,5 +36,9 @@ void FirstSwordEntity::render(){
 	myRenderManager->debugDrawRect(position.x, position.y, mySprite->getWidth(), mySprite->getHeight());
 }
 
-void FirstSwordEntity::onCollision(Entity * otherEntity){
+void FirstSwordEntity::onCollision(Entity* otherEntity){
+}
+
+int FirstSwordEntity::getDamage(){
+	return damage;
 }

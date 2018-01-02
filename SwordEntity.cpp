@@ -4,7 +4,7 @@
 #include "Sprite.h"
 #include "Service.h"
 #include "SpriteManager.h"
-#include <string>
+#include "RectangleCollider.h"
 
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include <string>
 
 enum SWORDDIRECTION {
 	S_UP,
@@ -17,6 +18,7 @@ class SwordEntity : public Entity{
 public:
 	SwordEntity();
 	virtual ~SwordEntity();
+	virtual int getDamage() = 0;
 	void reposition(PlayerAvatar* givenPlayer);
 	void setCollisionActive(bool givenActive);
 	SWORDDIRECTION getDirection();
@@ -27,7 +29,7 @@ public:
 protected:
 	bool collisionActive = true;
 	Sprite* mySprite = nullptr;
-	Collider* myCollider = nullptr;
+	RectangleCollider* myCollider = nullptr;
 	RenderManager* myRenderManager = nullptr;
 	SWORDDIRECTION direction;
 	SDL_Point position;

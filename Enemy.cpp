@@ -27,3 +27,7 @@ ENTITYTYPE Enemy::getType(){
 SDL_Point Enemy::getPosition(){
 	return position;
 }
+
+SDL_Point Enemy::getVelocity(){
+	return velocity;
+}

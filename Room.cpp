@@ -113,8 +113,8 @@ void Room::spawn(){
 				//spawn projectile enemies randomly in the middle of the room, being careful as to not collide with anything
 				bool spawned = false;
 				while (spawned == false) {
-					int rRow = Utilities::random(static_cast<int>(0.3 * Room::widthInTiles), static_cast<int>(0.6 * Room::widthInTiles));
-					int rColumn = Utilities::random(static_cast<int>(0.3 * Room::heightInTiles), static_cast<int>(0.6 * Room::heightInTiles));
+					int rRow = Utilities::random(static_cast<int>(0.3 * Room::widthInTiles), static_cast<int>(0.7 * Room::widthInTiles));
+					int rColumn = Utilities::random(static_cast<int>(0.3 * Room::heightInTiles), static_cast<int>(0.7 * Room::heightInTiles));
 					if (tiles[rRow][rColumn]->getType() != ENTITYTYPE::ENTITY_OBSTACLE) {
 						int okCount = 0;
 						for (auto e : enemies) {

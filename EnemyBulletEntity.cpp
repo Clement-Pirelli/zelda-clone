@@ -18,21 +18,21 @@ EnemyBulletEntity::EnemyBulletEntity(int givenX, int givenY, ENEMYDIRECTION give
 	myRenderManager = Service<RenderManager>::getService();
 	switch (givenDirection) {
 	case ENEMYDIRECTION::E_DOWN:
-		velocityY += speed;
-		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/bullet.png", 0, 0, 16, 20);
+		velocity.y += speed;
+		mySprite = Service<SpriteManager>::getService()->createSprite(verticalSpriteFilePath, 0, 0, 16, 20);
 		mySprite->setFlip(SDL_FLIP_VERTICAL);
 		break;
 	case ENEMYDIRECTION::E_UP:
-		velocityY -= speed;
-		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/bullet.png", 0, 0, 16, 20);
+		velocity.y -= speed;
+		mySprite = Service<SpriteManager>::getService()->createSprite(verticalSpriteFilePath, 0, 0, 16, 20);
 		break;
 	case ENEMYDIRECTION::E_LEFT:
-		velocityX -= speed;
-		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/bullet_horizontal.png", 0, 0, 20, 16);
+		velocity.x -= speed;
+		mySprite = Service<SpriteManager>::getService()->createSprite(horizontalSpriteFilePath, 0, 0, 20, 16);
 		break;
 	case ENEMYDIRECTION::E_RIGHT:
-		velocityX += speed;
-		mySprite = Service<SpriteManager>::getService()->createSprite("../Assets/bullet_horizontal.png", 0, 0, 20, 16);
+		velocity.x += speed;
+		mySprite = Service<SpriteManager>::getService()->createSprite(horizontalSpriteFilePath, 0, 0, 20, 16);
 		mySprite->setFlip(SDL_FLIP_HORIZONTAL);
 		break;
 	}
@@ -48,8 +48,8 @@ EnemyBulletEntity::~EnemyBulletEntity(){
 }
 
 void EnemyBulletEntity::update(float givenDeltaTime){
-	position.x += velocityX;
-	position.y += velocityY;
+	position.x += velocity.x;
+	position.y += velocity.y;
 	myCollider->setPosition(position.x, position.y);
 	if (position.x < 0
 		|| position.x + mySprite->getWidth() > Service<RoomManager>::getService()->getCurrentRoom()->getWidthInPixels()
@@ -88,6 +88,9 @@ SDL_Point EnemyBulletEntity::getPosition(){
 }
 
 SDL_Point EnemyBulletEntity::getVelocity(){
-	SDL_Point returnPoint{ velocityX, velocityY };
-	return returnPoint;
+	return velocity;
+}
+
+int EnemyBulletEntity::getDamage(){
+	return damage;
 }
