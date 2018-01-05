@@ -29,5 +29,6 @@ protected:
 	//the unit for these variable is healf hearts
 	int damage;
 	int health;
+	int speed;
 };
 

@@ -7,6 +7,7 @@
 #include "Sprite.h"
 #include "Animation.h"
 #include "RectangleCollider.h"
+#include "Inventory.h"
 #include "InventoryItem.h"
 #include "FirstSwordItem.h"
 #include "BombItem.h"
@@ -32,16 +33,18 @@ PlayerAvatar::PlayerAvatar(SDL_Scancode givenLeftKey, SDL_Scancode givenRightKey
 	myInputManager = Service<InputManager>::getService();
 	myRenderManager = Service<RenderManager>::getService();
 	myCollider = new RectangleCollider(position.x, position.y, getSprite()->getWidth(), getSprite()->getHeight());
-	swordItem = new FirstSwordItem();
-	//TODO : change this to make it be chosen in the inventory
-	secondItem = new BombItem();
+	myInventory = new Inventory(this);
 }
 
 PlayerAvatar::~PlayerAvatar(){
-	//delete every animation
-	currentAnimation = nullptr;
+	delete myInventory;
+	myInventory = nullptr;
 	delete myCollider;
 	myCollider = nullptr;
+	myRenderManager = nullptr;
+	myInputManager = nullptr;
+	//delete every animation
+	currentAnimation = nullptr;
 	delete walkingDownAnimation;
 	walkingDownAnimation = nullptr;
 	delete walkingUpAnimation;
@@ -54,11 +57,6 @@ PlayerAvatar::~PlayerAvatar(){
 	attackingUpAnimation = nullptr;
 	delete AttackingHorizontallyAnimation;
 	AttackingHorizontallyAnimation = nullptr;
-	//When the inventory system is done, these will not be deleted here!
-	delete swordItem;
-	swordItem = nullptr;
-	delete secondItem;
-	secondItem = nullptr;
 }
 
 void PlayerAvatar::update(float givenDeltaTime) {
@@ -78,11 +76,15 @@ void PlayerAvatar::update(float givenDeltaTime) {
 		break;
 	case PLAYERSTATE::PREPARING_TO_ATTACK:
 		//spawn the sword
-		swordItem->use(this);
-		//set the animation to attacking
-		currentAnimation->setIfActive(true);
-		setAttackingAnimation();
-		state = PLAYERSTATE::ATTACKING;
+		if (myInventory->getSwordItem() != nullptr){
+			myInventory->getSwordItem()->use(this);
+			//set the animation to attacking
+			currentAnimation->setIfActive(true);
+			setAttackingAnimation();
+			state = PLAYERSTATE::ATTACKING;
+		} else {
+			state = PLAYERSTATE::IDLE;
+		}
 		break;
 	case PLAYERSTATE::ATTACKING:
 		//set the state to idle when the animation is over
@@ -90,10 +92,10 @@ void PlayerAvatar::update(float givenDeltaTime) {
 		if (timer >= attackAnimationTime * 2){
 			//if full health, then spawn a projectile sword
 			if (halfHearts == maxHalfHearts){
-				swordItem->useFullHealth();
+				myInventory->getSwordItem()->useFullHealth();
 			}
 			//stop using the sword
-			swordItem->stopUse();
+			myInventory->getSwordItem()->stopUse();
 			//set the animation back to a walking animation, in case the attack animation hasn't ended yet
 			setWalkingAnimation();
 			state = PLAYERSTATE::IDLE;
@@ -205,6 +207,18 @@ void PlayerAvatar::onCollision(Entity* otherEntity){
 	}
 }
 
+Inventory* PlayerAvatar::getInventory(){
+	return myInventory;
+}
+
+SwordItem* PlayerAvatar::getSwordItem(){
+	return myInventory->getSwordItem();
+}
+
+InventoryItem* PlayerAvatar::getItem(){
+	return myInventory->getItem();
+}
+
 ENTITYTYPE PlayerAvatar::getType(){
 	return ENTITYTYPE::ENTITY_PLAYER;
 }
@@ -283,7 +297,9 @@ void PlayerAvatar::inputCheck(){
 		state = PLAYERSTATE::PREPARING_TO_ATTACK;
 	} else {
 		if (myInputManager->isKeyPressed(secondItemKey)) {
-			secondItem->use(this);
+			if (myInventory->getItem() != nullptr){
+				myInventory->getItem()->use(this);
+			}
 		} else {
 			if (myInputManager->isKeyDown(leftKey)) {
 				velocity.x = -speed;
@@ -352,7 +368,7 @@ void PlayerAvatar::setAttackingAnimation(){
 
 void PlayerAvatar::setKnockback(int givenXKnockback, int givenYKnockback, int givenDamage){
 	if (state == PLAYERSTATE::ATTACKING){
-		swordItem->stopUse();
+		myInventory->getSwordItem()->stopUse();
 	}
 	velocity.x = givenXKnockback;
 	velocity.y = givenYKnockback;

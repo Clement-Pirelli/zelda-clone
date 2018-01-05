@@ -6,6 +6,8 @@ class RoomManager{
 public:
 	RoomManager();
 	~RoomManager();
+	static const int maxRow = 2;
+	static const int maxColumn = 2;
 	Room* getCurrentRoom();
 	bool getRoomChange();
 	void update();
@@ -18,7 +20,5 @@ private:
 	bool roomChange = false;
 	int currentRow = 0;
 	int currentColumn = 0;
-	static const int maxRow = 2;
-	static const int maxColumn = 2;
 	std::array<std::array<Room*, maxColumn>, maxRow> roomArray;
 };

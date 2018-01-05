@@ -18,6 +18,7 @@
 ShootingEnemy::ShootingEnemy(int givenX, int givenY){
 	health = 2;
 	damage = 1;
+	speed = 1;
 	Service<EntityManager>::getService()->addEntity(this);
 	position.x = givenX;
 	position.y = givenY;
@@ -49,7 +50,7 @@ void ShootingEnemy::update(float givenDeltaTime){
 		timer += givenDeltaTime;
 		if (timer >= spawnTimer) {
 			state = SHOOTINGENEMYSTATE::SH_WAITING_TO_WALK;
-			timer = Utilities::random(0, 1);
+			timer = static_cast<float>(Utilities::random(0, 1));
 		}
 		break;
 	case SHOOTINGENEMYSTATE::SH_WAITING_TO_WALK:

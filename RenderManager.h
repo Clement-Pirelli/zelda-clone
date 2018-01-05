@@ -1,4 +1,5 @@
 #pragma once
+#include "RenderInfo.h"
 #include <vector>
 class Sprite;
 class RenderManager{
@@ -29,5 +30,5 @@ private:
 	void sortData();
 	SDL_Window* myWindow = nullptr;
 	SDL_Renderer* myRenderer = nullptr;
-	SDL_Point cameraOffset = {0,0};
+	SDL_Point cameraOffset = {0,RenderInfo::UI_HEIGHT};
 };

@@ -4,20 +4,28 @@
 
 class EntityManager;
 class RoomManager;
+class InputManager;
+class PlayerAvatar;
+class UI;
 
 class GameState : public State{
 public:
 	GameState();
 	~GameState();
-	//TODO : Check the newest Tiberius file : I think we do nothing in the enter and exit functions but could be wrong
-	void enter() override {};
+	void enter() override;
 	bool update(float deltaTime) override;
-	void exit() override {};
+	void exit() override;
 	std::string getNextState() override;
 private:
 	void checkCollision();
+	void checkInput();
+	void createRooms();
 	bool paused = false;
+	PlayerAvatar* myPlayer = nullptr;
+	InputManager* myInputManager = nullptr;
 	EntityManager* myEntityManager = nullptr;
 	RoomManager* myRoomManager = nullptr;
+	UI* myUI = nullptr;
+	const SDL_Scancode inventoryKey = SDL_SCANCODE_ESCAPE;
 };
 

@@ -5,11 +5,14 @@
 #include "PlayerAvatar.h"
 #include "Service.h"
 #include "EntityManager.h"
+#include "SpriteManager.h"
 
 FirstSwordItem::FirstSwordItem(){
+	displaySprite = Service<SpriteManager>::getService()->createSprite("../Assets/firstsword_UI.png", 0, 0, displaySpriteDimension, displaySpriteDimension);
 }
 
 FirstSwordItem::~FirstSwordItem(){
+	displaySprite = nullptr;
 }
 
 void FirstSwordItem::use(PlayerAvatar* givenPlayer){

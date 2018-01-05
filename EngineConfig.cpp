@@ -3,7 +3,7 @@
 
 const char* EngineConfig::WINDOW_TITLE = "Tiberius Engine";
 const int EngineConfig::WINDOW_WIDTH = 640;
-const int EngineConfig::WINDOW_HEIGHT = 480;
+const int EngineConfig::WINDOW_HEIGHT = 620;
 
 const int EngineConfig::AUDIO_FLAGS = MIX_INIT_MP3;
 const int EngineConfig::AUDIO_FREQUENCY = 44100;

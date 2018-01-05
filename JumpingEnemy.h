@@ -2,16 +2,20 @@
 #include "Enemy.h"
 
 enum JMSPRITEINDEX {
-	JM_JUMPING = 0,
-	JM_IDLE = 1,
+	JM_JUMPINGINDEX = 0,
+	JM_IDLEINDEX = 1,
 };
 
 enum JUMPINGENEMYSTATE {
 	JM_JUMPING,
 	JM_WAITING_TO_JUMP,
+	JM_IDLE,
 	JM_SPAWNING,
 	JM_KNOCKED_BACK
 };
+
+class Sprite;
+class Animation;
 
 class JumpingEnemy : public Enemy{
 public:
@@ -22,11 +26,18 @@ public:
 	void onCollision(Entity* otherEntity) override;
 	Sprite* getSprite() override;
 private:
+	void createAnimations();
+	void setKnockback(int givenXKnockback, int givenYKnockback, int givenDamage);
 	JUMPINGENEMYSTATE state = JUMPINGENEMYSTATE::JM_SPAWNING;
-	Sprite* currentSprite = nullptr;
-	Sprite* jumpingSprite = nullptr;
-	Sprite* idleSprite = nullptr;
+	Animation* idleAnimation;
+	Animation* jumpingAnimation;
+	Animation* currentAnimation;
 	float timer = 0.0f;
+	float jumpTimer = 1.0f;
+	float idleTimer = 1.0f;
 	const float spawnTimer = 2.0f;
+	const float idleAnimationTime = 0.3f;
+	const float knockbackTimer = 0.5f;
+	int knockbackSpeed = 3;
 };
 

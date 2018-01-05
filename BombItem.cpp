@@ -2,14 +2,26 @@
 #include "BombItem.h"
 #include "BombEntity.h"
 #include "PlayerAvatar.h"
+#include "Service.h"
+#include "Sprite.h"
+#include "SpriteManager.h"
 
 BombItem::BombItem(){
+	displaySprite = Service<SpriteManager>::getService()->createSprite("../Assets/bomb_UI.png", 0, 0, displaySpriteDimension, displaySpriteDimension);
 }
 
 
 BombItem::~BombItem(){
+	displaySprite = nullptr;
 }
 
 void BombItem::use(PlayerAvatar* givenPlayer){
-	new BombEntity(givenPlayer->getPosition().x, givenPlayer->getPosition().y);
+	if (bombCount > 0){
+		bombCount--;
+		new BombEntity(givenPlayer->getPosition().x, givenPlayer->getPosition().y);
+	}
+}
+
+int BombItem::getBombCount(){
+	return bombCount;
 }

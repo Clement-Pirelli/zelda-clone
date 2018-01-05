@@ -181,17 +181,23 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="HealthUI.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="InventoryItem.h" />
+    <ClInclude Include="InventoryUI.h" />
     <ClInclude Include="JumpingEnemy.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="LayerInfo.h" />
+    <ClInclude Include="MapUI.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="BOTTOMTEXT_Entity.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PlayerAvatar.h" />
+    <ClInclude Include="PlayerVariablesUI.h" />
     <ClInclude Include="RectangleCollider.h" />
+    <ClInclude Include="RenderInfo.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomManager.h" />
@@ -212,6 +218,7 @@
     <ClInclude Include="SwordProjectileEntity.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
@@ -227,14 +234,19 @@
     <ClCompile Include="EngineConfig.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="HealthUI.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InventoryUI.cpp" />
     <ClCompile Include="JumpingEnemy.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="MapUI.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="BOTTOMTEXT_Entity.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PlayerAvatar.cpp" />
+    <ClCompile Include="PlayerVariablesUI.cpp" />
     <ClCompile Include="RectangleCollider.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -258,6 +270,7 @@
     <ClCompile Include="SwordProjectileEntity.cpp" />
     <ClCompile Include="Tiberius_Engine.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

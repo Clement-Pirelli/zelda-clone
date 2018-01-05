@@ -34,6 +34,7 @@ class RectangleCollider;
 class Animation;
 class InventoryItem;
 class SwordItem;
+class Inventory;
 
 
 class PlayerAvatar : public Entity{
@@ -43,6 +44,9 @@ public:
 	void update(float givenDeltaTime) override;
 	void render() override;
 	void onCollision(Entity* otherEntity) override;
+	Inventory* getInventory();
+	SwordItem* getSwordItem();
+	InventoryItem* getItem();
 	Sprite* getSprite() override;
 	Collider* getCollider() override;
 	SDL_Point getPosition() override;
@@ -69,8 +73,7 @@ private:
 	InputManager* myInputManager = nullptr;
 	RenderManager* myRenderManager = nullptr;
 	RectangleCollider* myCollider = nullptr;
-	SwordItem* swordItem = nullptr;
-	InventoryItem* secondItem = nullptr;
+	Inventory* myInventory = nullptr;
 	SDL_Scancode leftKey,
 		rightKey,
 		upKey,
@@ -82,12 +85,19 @@ private:
 	SDL_Point position;
 	SDL_Point lastPosition;
 	SDL_Point velocity;
-	int halfHearts = 6;
+	bool hasBomb = true;
 	int maxHalfHearts = 6;
+	int halfHearts = maxHalfHearts;
+	int rupeeCount = 0;
+	int keyCount = 0;
 	const int speed = 2;
 	const int knockbackSpeed = 3;
 	const float attackAnimationTime = 0.2f;
 	const float movementAnimationTime = 0.2f;
 	const float knockbackTime = 0.3f;
 	float timer = 0.0f;
+	//make this false until the player gets a bomb pick-up;
+	
+	
+
 };

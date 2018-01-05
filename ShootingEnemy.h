@@ -49,7 +49,6 @@ private:
 	const float knockbackTimer = 0.5f;
 	float timer = 0.0f;
 	ENEMYDIRECTION direction;
-	int speed = 1;
 	int knockbackSpeed = 3;
 };
 

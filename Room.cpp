@@ -9,6 +9,7 @@
 #include "EntityManager.h"
 #include "Utilities.h"
 #include "ShootingEnemy.h"
+#include "JumpingEnemy.h"
 
 bool Room::getIfCave(){
 	return isCave;
@@ -93,50 +94,43 @@ void Room::setTiles(std::array<std::array<Tile*, Room::heightInTiles>, Room::wid
 
 //TODO : factory which spawns enemies according to their enemy type at the start of the game
 void Room::spawn(){
-	if (isCleared == false) {
+	if (isCleared == false && myEnemyType != ROOMENEMYTYPE::NO_ENEMY) {
 		std::vector<Enemy*> enemies;
-		switch (myEnemyType) {
-		case ROOMENEMYTYPE::JUMPING_ENEMY:
-			for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
-				//spawn jumping enemies randomly in the middle of the room, being careful as to not collide with anything || choose spawn points and don't put anything there in any room with enemies
-
-				/*bool spawned = false;
-				while (spawned == false) {
-				int rRow = Utilities::random(0.3 * Room::widthInTiles, 0.6 * Room::widthInTiles);
-				int rColumn = Utilities::random(0.3 * Room::heightInTiles, 0.6 * Room::heightInTiles);
-
-				}*/
-			}
-			break;
-		case ROOMENEMYTYPE::SHOOTING_ENEMY:
-			for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
-				//spawn projectile enemies randomly in the middle of the room, being careful as to not collide with anything
-				bool spawned = false;
-				while (spawned == false) {
-					int rRow = Utilities::random(static_cast<int>(0.3 * Room::widthInTiles), static_cast<int>(0.7 * Room::widthInTiles));
-					int rColumn = Utilities::random(static_cast<int>(0.3 * Room::heightInTiles), static_cast<int>(0.7 * Room::heightInTiles));
-					if (tiles[rRow][rColumn]->getType() != ENTITYTYPE::ENTITY_OBSTACLE) {
-						int okCount = 0;
-						for (auto e : enemies) {
-							if (e->getPosition().x == rRow * Room::widthInTiles && e->getPosition().y == rColumn * Room::heightInTiles) {
-								break;
+		for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
+			//spawn enemies randomly in the middle of the room, being careful as to not collide with anything
+			bool spawned = false;
+			while (spawned == false) {
+				int rRow = Utilities::random(Room::widthInTiles - 13, Room::widthInTiles - 7);
+				int rColumn = Utilities::random(Room::heightInTiles - 10, Room::heightInTiles - 5);
+				if (tiles[rRow][rColumn]->getType() != ENTITYTYPE::ENTITY_OBSTACLE) {
+					int okCount = 0;
+					for (auto e : enemies) {
+						if (e->getPosition().x == rRow * Room::widthInTiles && e->getPosition().y == rColumn * Room::heightInTiles) {
+							break;
+						} else {
+							okCount++;
+						}
+					}
+					if (okCount >= enemies.size()) {
+						if (myEnemyType == ROOMENEMYTYPE::JUMPING_ENEMY){
+							new JumpingEnemy(rRow * Room::widthInTiles, rColumn * Room::heightInTiles);
+						} else {
+							if (myEnemyType == ROOMENEMYTYPE::SHOOTING_ENEMY){
+								new ShootingEnemy(rRow * Room::widthInTiles, rColumn * Room::heightInTiles);
 							} else {
-								okCount++;
+								if (myEnemyType == ROOMENEMYTYPE::MIXED){
+									if (i > Room::enemySpawnAmount / 2){
+										new JumpingEnemy(rRow * Room::widthInTiles, rColumn * Room::heightInTiles);
+									} else {
+										new ShootingEnemy(rRow * Room::widthInTiles, rColumn * Room::heightInTiles);
+									}
+								}
 							}
 						}
-						if (okCount >= enemies.size()) {
-							new ShootingEnemy(rRow * Room::widthInTiles, rColumn * Room::heightInTiles);
-							spawned = true;
-						}
+						spawned = true;
 					}
 				}
 			}
-			break;
-		case ROOMENEMYTYPE::MIXED:
-			for (unsigned int i = 0; i < Room::enemySpawnAmount; i++) {
-				//spawn half of both enemies randomly in the middle of the room, being careful as to not collide with anything
-			}
-			break;
 		}
 	}
 }
