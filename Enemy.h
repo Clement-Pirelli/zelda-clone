@@ -22,6 +22,7 @@ public:
 	SDL_Point getPosition() override;
 	SDL_Point getVelocity();
 protected:
+	void spawnPickUp();
 	SDL_Point position;
 	SDL_Point velocity;
 	RenderManager* myRenderManager = nullptr;

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-
+#include "BombItem.h"
+#include "RenderInfo.h"
 
 class PlayerAvatar;
 class InventoryItem;
@@ -24,7 +25,7 @@ public:
 		for (InventoryItem* e : items) {
 			T* castPtr = dynamic_cast<T*>(e);
 			if (castPtr != nullptr) {
-				return e;
+				return static_cast<T*>(e);
 			}
 		}
 		return nullptr;
@@ -37,13 +38,13 @@ private:
 	PlayerAvatar* player;
 	int currentItem = 0;
 	Sprite* selectionBoard;
-	const SDL_Point SELECTION_BOARD_POSITION = { 300, 300 };
+	const SDL_Point SELECTION_BOARD_POSITION = { 300, 300 - RenderInfo::INVENTORY_HEIGHT };
 	Sprite* selectedBoard;
-	const SDL_Point SELECTED_BOARD_POSITION = { 150, 300 };
+	const SDL_Point SELECTED_BOARD_POSITION = { 150, SELECTION_BOARD_POSITION.y};
 	Sprite* instructionText;
-	const SDL_Point INSTRUCTION_TEXT_POSITION = { 100, 350 };
+	const SDL_Point INSTRUCTION_TEXT_POSITION = { 100, 350 - RenderInfo::INVENTORY_HEIGHT };
 	Sprite* inventoryText;
-	const SDL_Point INVENTORY_TEXT_POSITION = { 100, 200 };
+	const SDL_Point INVENTORY_TEXT_POSITION = { 100, 200 - RenderInfo::INVENTORY_HEIGHT };
 	Sprite* selectedItemCursor;
 	const SDL_Scancode leftKey = SDL_SCANCODE_A;
 	const SDL_Scancode rightKey = SDL_SCANCODE_D;

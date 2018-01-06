@@ -9,6 +9,7 @@ public:
 	~BombItem();
 	void use(PlayerAvatar* givenPlayer) override;
 	int getBombCount();
+	void addBomb();
 private:
 	int bombCount = 1;
 };

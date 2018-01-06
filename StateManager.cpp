@@ -1,15 +1,18 @@
 #include "stdafx.h"
 #include "StateManager.h"
 #include "State.h"
+#include "Service.h"
 
 StateManager::StateManager(){
+	Service<StateManager>::setService(this);
 }
 
 
 StateManager::~StateManager(){
+	Service<StateManager>::setService(nullptr);
 }
 
-void StateManager::addState(std::string givenIdentifier, State * givenState){
+void StateManager::addState(std::string givenIdentifier, State* givenState){
 	auto iterator = states.find(givenIdentifier);
 	if(iterator == states.end()){
 		states.insert(std::pair<std::string, State*>(givenIdentifier, givenState));

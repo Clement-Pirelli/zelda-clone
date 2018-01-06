@@ -10,12 +10,11 @@
 #include "InputManager.h"
 #include "Sprite.h"
 #include "SpriteManager.h"
-#include "BombItem.h"
+
 
 Inventory::Inventory(PlayerAvatar* givenPlayer){
 	player = givenPlayer;
 	swordItem = new FirstSwordItem();
-	items.push_back(new BombItem);
 	myRenderManager = Service<RenderManager>::getService();
 	myInputManager = Service<InputManager>::getService();
 	instructionText = Service<SpriteManager>::getService()->createSprite("../Assets/instruction_text_UI.png", 0, 0, 158, 34);
@@ -35,7 +34,10 @@ Inventory::~Inventory(){
 }
 
 InventoryItem* Inventory::getItem(){
-	return items[currentItem];
+	if (items.size() != 0){
+		return items[currentItem];
+	}
+	return nullptr;
 }
 
 SwordItem* Inventory::getSwordItem(){
@@ -53,17 +55,17 @@ void Inventory::replaceSword(SwordItem* givenSword){
 
 void Inventory::draw(){
 	for (unsigned int i = 0; i < items.size(); i++){
-		myRenderManager->draw(items[i]->getDisplaySprite(), SELECTION_BOARD_POSITION.x + 16 * i, SELECTION_BOARD_POSITION.y - RenderInfo::INVENTORY_HEIGHT);
+		myRenderManager->draw(items[i]->getDisplaySprite(), SELECTION_BOARD_POSITION.x + 16 * i, SELECTION_BOARD_POSITION.y);
 	}
-	myRenderManager->draw(inventoryText, INVENTORY_TEXT_POSITION.x, INVENTORY_TEXT_POSITION.y - RenderInfo::INVENTORY_HEIGHT);
-	myRenderManager->draw(inventoryText, INVENTORY_TEXT_POSITION.x, INVENTORY_TEXT_POSITION.y - RenderInfo::INVENTORY_HEIGHT);
-	myRenderManager->draw(instructionText, INSTRUCTION_TEXT_POSITION.x, INSTRUCTION_TEXT_POSITION.y - RenderInfo::INVENTORY_HEIGHT);
-	myRenderManager->draw(selectedBoard, SELECTED_BOARD_POSITION.x, SELECTED_BOARD_POSITION.y - RenderInfo::INVENTORY_HEIGHT);
-	myRenderManager->draw(selectionBoard, SELECTION_BOARD_POSITION.x, SELECTION_BOARD_POSITION.y - RenderInfo::INVENTORY_HEIGHT);
+	myRenderManager->draw(inventoryText, INVENTORY_TEXT_POSITION.x, INVENTORY_TEXT_POSITION.y);
+	myRenderManager->draw(inventoryText, INVENTORY_TEXT_POSITION.x, INVENTORY_TEXT_POSITION.y);
+	myRenderManager->draw(instructionText, INSTRUCTION_TEXT_POSITION.x, INSTRUCTION_TEXT_POSITION.y);
+	myRenderManager->draw(selectedBoard, SELECTED_BOARD_POSITION.x, SELECTED_BOARD_POSITION.y);
+	myRenderManager->draw(selectionBoard, SELECTION_BOARD_POSITION.x, SELECTION_BOARD_POSITION.y);
 	if (items.size() != 0){
-		myRenderManager->draw(items[currentItem]->getDisplaySprite(), SELECTED_BOARD_POSITION.x + 3, SELECTED_BOARD_POSITION.y + 3 - RenderInfo::INVENTORY_HEIGHT);
+		myRenderManager->draw(items[currentItem]->getDisplaySprite(), SELECTED_BOARD_POSITION.x + 3, SELECTED_BOARD_POSITION.y + 3);
 	}
-	myRenderManager->draw(selectedItemCursor, SELECTION_BOARD_POSITION.x + 3 + currentItem * 32, SELECTION_BOARD_POSITION.y + 3 - RenderInfo::INVENTORY_HEIGHT);
+	myRenderManager->draw(selectedItemCursor, SELECTION_BOARD_POSITION.x + 3 + currentItem * 32, SELECTION_BOARD_POSITION.y + 3);
 }
 
 void Inventory::checkInput(){

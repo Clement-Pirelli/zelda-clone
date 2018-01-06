@@ -11,7 +11,7 @@ public:
 	SDL_Point getMousePosition();
 	SDL_Point getMouseMotion();
 	void handleEvents(SDL_Event &givenEvent);
-	void lateUpdate(float deltaTime);
+	void lateUpdate(float givenDeltaTime);
 private:
 	void setButton(int buttonIndex, bool givenValue);
 	SDL_Point position;

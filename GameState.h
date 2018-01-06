@@ -7,6 +7,7 @@ class RoomManager;
 class InputManager;
 class PlayerAvatar;
 class UI;
+class NumberFont;
 
 class GameState : public State{
 public:
@@ -26,6 +27,7 @@ private:
 	EntityManager* myEntityManager = nullptr;
 	RoomManager* myRoomManager = nullptr;
 	UI* myUI = nullptr;
+	NumberFont* myFont = nullptr;
 	const SDL_Scancode inventoryKey = SDL_SCANCODE_ESCAPE;
 };
 

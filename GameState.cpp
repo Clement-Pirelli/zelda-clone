@@ -12,12 +12,15 @@
 #include "EngineConfig.h"
 #include "RenderInfo.h"
 #include "UI.h"
+#include "NumberFont.h"
 
 GameState::GameState(){
+	myFont = new NumberFont("../Assets/numbers_font.png", 14, 14);
+	Service<NumberFont>::setService(myFont);
 	myEntityManager = new EntityManager();
 	Service<EntityManager>::setService(myEntityManager);
 	myInputManager = Service<InputManager>::getService();
-	myPlayer = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, SDL_SCANCODE_V ,100, 50);
+	myPlayer = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, SDL_SCANCODE_X ,100, 50);
 	myEntityManager->addEntity(myPlayer);
 	myRoomManager = new RoomManager();
 	Service<RoomManager>::setService(myRoomManager);
@@ -33,11 +36,15 @@ GameState::~GameState(){
 	delete myRoomManager;
 	myRoomManager = nullptr;
 	myInputManager = nullptr;
-	//no need to remove the player from the entityManager, the player is removed and deleted during its destruction
+	myEntityManager->removeEntity(myPlayer);
+	delete myPlayer;
 	myPlayer = nullptr;
 	delete myEntityManager;
 	myEntityManager = nullptr;
 	Service<EntityManager>::setService(nullptr);
+	Service<NumberFont>::setService(nullptr);
+	delete myFont;
+	myFont = nullptr;
 }
 
 void GameState::enter(){
@@ -49,13 +56,15 @@ bool GameState::update(float deltaTime){
 		myEntityManager->update(deltaTime);
 		checkCollision();
 		myRoomManager->update();
+		if (myPlayer->getHealth() <= 0){
+			return false;
+		}
 	} else {
 		myPlayer->getInventory()->draw();
 		myPlayer->getInventory()->checkInput();
 	}
 	myEntityManager->render();
 	myUI->render();
-
 	checkInput();
 	return true;
 }
@@ -66,7 +75,7 @@ void GameState::exit(){
 
 //TODO : put the game over state here
 std::string GameState::getNextState(){
-	return "";
+	return "gameOverState";
 }
 
 void GameState::checkCollision(){
@@ -82,7 +91,6 @@ void GameState::checkCollision(){
 }
 
 void GameState::checkInput(){
-	
 	if (myInputManager->isKeyPressed(inventoryKey)) {
 		if (paused == true){
 			paused = false;
@@ -92,7 +100,6 @@ void GameState::checkInput(){
 			Service<RenderManager>::getService()->addToCameraPosition(0, EngineConfig::WINDOW_HEIGHT - RenderInfo::UI_HEIGHT);
 		}
 	}
-	
 }
 
 //TODO : flesh this out in the final stages of production

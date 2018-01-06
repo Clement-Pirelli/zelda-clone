@@ -133,6 +133,12 @@
     <Filter Include="Source Files\Game\UI">
       <UniqueIdentifier>{1f0af245-d386-4124-9d30-ccd21a24462f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Entities\PickUps">
+      <UniqueIdentifier>{f1068654-cf84-428d-9b74-acb86dbb8fc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Entities\PickUps">
+      <UniqueIdentifier>{d2af2287-fe02-470d-8faa-475e02b58d6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -286,13 +292,37 @@
       <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="HealthUI.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="MapUI.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberFont.h">
+      <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerVariablesUI.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="HeartPickUp.h">
+      <Filter>Header Files\Game\Entities\PickUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PickUp.h">
+      <Filter>Header Files\Game\Entities\PickUps</Filter>
+    </ClInclude>
+    <ClInclude Include="FairyPickUp.h">
+      <Filter>Header Files\Game\Entities\PickUps</Filter>
+    </ClInclude>
+    <ClInclude Include="BombPickUp.h">
+      <Filter>Header Files\Game\Entities\PickUps</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyPickUp.h">
+      <Filter>Header Files\Game\Entities\PickUps</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="RupeePickUp.h">
+      <Filter>Header Files\Game\Entities\PickUps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -420,13 +450,37 @@
       <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="HealthUI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="MapUI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberFont.cpp">
+      <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerVariablesUI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="HeartPickUp.cpp">
+      <Filter>Source Files\Game\Entities\PickUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PickUp.cpp">
+      <Filter>Source Files\Game\Entities\PickUps</Filter>
+    </ClCompile>
+    <ClCompile Include="FairyPickUp.cpp">
+      <Filter>Source Files\Game\Entities\PickUps</Filter>
+    </ClCompile>
+    <ClCompile Include="BombPickUp.cpp">
+      <Filter>Source Files\Game\Entities\PickUps</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyPickUp.cpp">
+      <Filter>Source Files\Game\Entities\PickUps</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="RupeePickUp.cpp">
+      <Filter>Source Files\Game\Entities\PickUps</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

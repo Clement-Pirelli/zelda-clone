@@ -2,15 +2,14 @@
 #include "StateOwner.h"
 #include "StateManager.h"
 
-StateOwner::StateOwner(){}
-
-
 StateOwner::StateOwner(StateManager& givenStateManager){
 	myStateManager = &givenStateManager;
-	myStateManager->addState("gameState", &myState);
+	myStateManager->addState("gameState", &myGameState);
+	myStateManager->addState("gameOverState", &myGameOverState);
 	myStateManager->setState("gameState");
 }
 
 StateOwner::~StateOwner(){
 	myStateManager->removeState("gameState");
+	myStateManager->removeState("gameOverState");
 }

@@ -80,7 +80,9 @@ void Engine::run(){
 		handleEvents();
 		myRenderManager->clear();
 		calculateDeltaTime();
-		myStateManager->update(deltaTime);
+		if (myStateManager->update(deltaTime) == false){
+			running = false;
+		}
 		myInputManager->lateUpdate(deltaTime);
 		myRenderManager->present();
 		SDL_Delay(16);

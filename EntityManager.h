@@ -3,6 +3,7 @@
 
 class Entity;
 enum ENTITYTYPE;
+
 class EntityManager{
 public:
 	EntityManager();
@@ -12,11 +13,11 @@ public:
 	void addEntity(Entity* givenEntity);
 	void removeEntity(Entity* givenEntity);
 	template<typename T>
-	std::vector<T*> getEntities() {
+	std::vector<T*> getEntities(){
 		std::vector<T*> returnVector;
-		for (Entity* e : entities) {
+		for (Entity* e : entities){
 			T* castPtr = dynamic_cast<T*>(e);
-			if (castPtr != nullptr) {
+			if (castPtr != nullptr){
 				returnVector.push_back(castPtr);
 			}
 		}

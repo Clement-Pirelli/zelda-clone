@@ -104,6 +104,7 @@ void ShootingEnemy::update(float givenDeltaTime){
 	myCollider->setPosition(position.x, position.y);
 
 	if (health <= 0) {
+		spawnPickUp();
 		Service<RoomManager>::getService()->getCurrentRoom()->decrementEnemyCount();
 		delete this;
 	}

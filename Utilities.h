@@ -8,4 +8,14 @@ namespace Utilities {
 		std::uniform_int_distribution<> distr(min, max); //define the range
 		return distr(eng);
 	}
+	
+	static unsigned int getLength(int givenNumber){
+		int length = 0;
+		while (givenNumber >= 1){
+			length++;
+			givenNumber /= 10;
+		}
+		return length;
+	}
+
 }

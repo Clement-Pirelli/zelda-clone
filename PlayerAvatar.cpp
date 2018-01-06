@@ -205,6 +205,25 @@ void PlayerAvatar::onCollision(Entity* otherEntity){
 			}
 		}
 	}
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_BOMB_PICKUP){
+		if (myInventory->getItem<BombItem>() != nullptr){
+			myInventory->getItem<BombItem>()->addBomb();
+		} else {
+			myInventory->pushItem(new BombItem());
+		}
+	}
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_FAIRY_PICKUP){
+		halfHearts = maxHalfHearts;
+	}
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_KEY_PICKUP){
+		keyCount++;
+	}
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_HEART_PICKUP){
+		addHealth(2);
+	}
+	if (otherEntity->getType() == ENTITYTYPE::ENTITY_RUPEE_PICKUP){
+		addRupees(20);
+	}
 }
 
 Inventory* PlayerAvatar::getInventory(){
@@ -235,8 +254,27 @@ int PlayerAvatar::getMaxHealth(){
 	return maxHalfHearts;
 }
 
+int PlayerAvatar::getRupeeCount(){
+	return rupeeCount;
+}
+
+void PlayerAvatar::addRupees(int givenNumber){
+	rupeeCount += givenNumber;
+}
+
+int PlayerAvatar::getKeyCount(){
+	return keyCount;
+}
+
+void PlayerAvatar::addKey(){
+	keyCount++;
+}
+
 void PlayerAvatar::addHealth(int givenHealth){
 	halfHearts += givenHealth;
+	if (halfHearts > maxHalfHearts){
+		halfHearts = maxHalfHearts;
+	}
 }
 
 void PlayerAvatar::setPositionX(int givenPosition){

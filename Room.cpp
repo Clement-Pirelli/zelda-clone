@@ -136,7 +136,7 @@ void Room::spawn(){
 }
 
 void Room::checkIfCleared(){
-	if (enemyCount <= 0) {
+	if (enemyCount <= 0 && isCleared == false) {
 		isCleared = true;
 	} else {
 		int enemyCount = enemySpawnAmount;

@@ -25,3 +25,7 @@ void BombItem::use(PlayerAvatar* givenPlayer){
 int BombItem::getBombCount(){
 	return bombCount;
 }
+
+void BombItem::addBomb(){
+	bombCount++;
+}

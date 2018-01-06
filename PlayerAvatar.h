@@ -54,6 +54,10 @@ public:
 	PLAYERDIRECTION getDirection();
 	int getHealth();
 	int getMaxHealth();
+	int getRupeeCount();
+	void addRupees(int givenNumber);
+	int getKeyCount();
+	void addKey();
 	void addHealth(int givenHealth);
 	void setPositionX(int givenPosition);
 	void setPositionY(int givenPosition);
@@ -85,19 +89,16 @@ private:
 	SDL_Point position;
 	SDL_Point lastPosition;
 	SDL_Point velocity;
+	//make this false until the player gets a bomb pick-up
 	bool hasBomb = true;
 	int maxHalfHearts = 6;
 	int halfHearts = maxHalfHearts;
-	int rupeeCount = 0;
-	int keyCount = 0;
+	int rupeeCount = 100;
+	int keyCount = 3;
 	const int speed = 2;
 	const int knockbackSpeed = 3;
 	const float attackAnimationTime = 0.2f;
 	const float movementAnimationTime = 0.2f;
 	const float knockbackTime = 0.3f;
 	float timer = 0.0f;
-	//make this false until the player gets a bomb pick-up;
-	
-	
-
 };

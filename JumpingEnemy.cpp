@@ -93,6 +93,7 @@ void JumpingEnemy::update(float givenDeltaTime){
 	myCollider->setPosition(position.x, position.y);
 	currentAnimation->tick(givenDeltaTime);
 	if (health <= 0) {
+		spawnPickUp();
 		Service<RoomManager>::getService()->getCurrentRoom()->decrementEnemyCount();
 		delete this;
 	}

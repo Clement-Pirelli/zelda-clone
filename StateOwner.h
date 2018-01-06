@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include "GameOverState.h"
+
 class StateManager;
 
 class StateOwner{
@@ -7,8 +9,8 @@ public:
 	StateOwner(StateManager& givenStateManager);
 	~StateOwner();
 private:
-	StateOwner();
 	StateManager* myStateManager = nullptr;
-	GameState myState;
+	GameState myGameState;
+	GameOverState myGameOverState;
 };
 
