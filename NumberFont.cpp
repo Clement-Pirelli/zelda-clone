@@ -21,6 +21,7 @@ NumberFont::NumberFont(std::string givenFilePath, int givenSpriteWidth, int give
 
 NumberFont::~NumberFont(){
 	for (Sprite* s : font){
+		Service<SpriteManager>::getService()->destroySprite(s);
 		s = nullptr;
 	}
 	myRenderManager = nullptr;

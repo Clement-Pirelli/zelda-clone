@@ -12,15 +12,15 @@
 InventoryUI::InventoryUI(Inventory* givenInventory){
 	myInventory = givenInventory;
 	myRenderManager = Service<RenderManager>::getService();
-	SecondItemBoxSprite = Service<SpriteManager>::getService()->createSprite("../Assets/second_item_selection_UI.png", 0, 0, ITEM_BOX_DIMENSIONS.x, ITEM_BOX_DIMENSIONS.y);
-	SwordItemBoxSprite = Service<SpriteManager>::getService()->createSprite("../Assets/sword_item_selection_UI.png", 0, 0, ITEM_BOX_DIMENSIONS.x, ITEM_BOX_DIMENSIONS.y);
+	secondItemBoxSprite = Service<SpriteManager>::getService()->createSprite("../Assets/second_item_selection_UI.png", 0, 0, ITEM_BOX_DIMENSIONS.x, ITEM_BOX_DIMENSIONS.y);
+	swordItemBoxSprite = Service<SpriteManager>::getService()->createSprite("../Assets/sword_item_selection_UI.png", 0, 0, ITEM_BOX_DIMENSIONS.x, ITEM_BOX_DIMENSIONS.y);
 }
 
 InventoryUI::~InventoryUI(){
-	delete SwordItemBoxSprite;
-	SwordItemBoxSprite = nullptr;
-	delete SecondItemBoxSprite;
-	SecondItemBoxSprite = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(swordItemBoxSprite);
+	swordItemBoxSprite = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(secondItemBoxSprite);
+	secondItemBoxSprite = nullptr;
 	myRenderManager = nullptr;
 	myInventory = nullptr;
 }
@@ -32,6 +32,6 @@ void InventoryUI::render(){
 	if (myInventory->getSwordItem()->getDisplaySprite() != nullptr){
 		myRenderManager->draw(myInventory->getSwordItem()->getDisplaySprite(), SWORD_ITEM_BOX_POSITION.x + ITEM_OFFSET.x, SWORD_ITEM_BOX_POSITION.y + ITEM_OFFSET.y);
 	}
-	myRenderManager->draw(SecondItemBoxSprite, SECOND_ITEM_BOX_POSITION.x, SECOND_ITEM_BOX_POSITION.y);
-	myRenderManager->draw(SwordItemBoxSprite, SWORD_ITEM_BOX_POSITION.x, SWORD_ITEM_BOX_POSITION.y);
+	myRenderManager->draw(secondItemBoxSprite, SECOND_ITEM_BOX_POSITION.x, SECOND_ITEM_BOX_POSITION.y);
+	myRenderManager->draw(swordItemBoxSprite, SWORD_ITEM_BOX_POSITION.x, SWORD_ITEM_BOX_POSITION.y);
 }

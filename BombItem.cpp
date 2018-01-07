@@ -12,6 +12,7 @@ BombItem::BombItem(){
 
 
 BombItem::~BombItem(){
+	Service<SpriteManager>::getService()->destroySprite(displaySprite);
 	displaySprite = nullptr;
 }
 

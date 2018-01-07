@@ -15,7 +15,9 @@ MapUI::MapUI(){
 
 
 MapUI::~MapUI(){
+	Service<SpriteManager>::getService()->destroySprite(currentRoomCellSprite);
 	currentRoomCellSprite = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(roomCellSprite);
 	roomCellSprite = nullptr;
 	myRoomManager = nullptr;
 	myRenderManager = nullptr;

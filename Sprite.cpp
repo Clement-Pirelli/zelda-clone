@@ -11,8 +11,6 @@ Sprite::Sprite(SDL_Texture* givenTexture, int givenX, int givenY, int givenW, in
 }
 
 Sprite::~Sprite() {
-	SDL_DestroyTexture(myTexture);
-	myTexture = nullptr;
 }
 
 SDL_Rect Sprite::getArea(){

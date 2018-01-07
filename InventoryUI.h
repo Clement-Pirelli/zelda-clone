@@ -15,8 +15,8 @@ private:
 	RenderManager* myRenderManager;
 	Sprite* currentSwordItemSprite;
 	Sprite* currentSecondItemSprite;
-	Sprite* SwordItemBoxSprite;
-	Sprite* SecondItemBoxSprite;
+	Sprite* swordItemBoxSprite;
+	Sprite* secondItemBoxSprite;
 	const SDL_Point SECOND_ITEM_BOX_POSITION{ 300, 30 - RenderInfo::UI_HEIGHT};
 	const SDL_Point SWORD_ITEM_BOX_POSITION{ SECOND_ITEM_BOX_POSITION.x + 50 , SECOND_ITEM_BOX_POSITION.y };
 	const SDL_Point ITEM_BOX_DIMENSIONS{ 36,58 };

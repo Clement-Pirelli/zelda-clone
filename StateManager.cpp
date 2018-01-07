@@ -32,6 +32,7 @@ void StateManager::setState(std::string givenIdentifier){
 		currentState->exit();
 	}
 	currentState = iterator->second;
+	currentState->enter();
 }
 
 bool StateManager::update(float givenDeltaTime){
@@ -48,6 +49,8 @@ void StateManager::changeState(){
 	std::string nextState = currentState->getNextState();
 	auto iterator = states.find(nextState);
 	if (iterator == states.end()) {
+		currentState->exit();
+		currentState = nullptr;
 		return;
 	}
 	currentState->exit();

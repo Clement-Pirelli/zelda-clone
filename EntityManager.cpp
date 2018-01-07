@@ -10,8 +10,8 @@ EntityManager::~EntityManager(){
 	std::vector<Entity*> ent = std::vector<Entity*>(entities);
 	for (auto e : ent) {
 		delete e;
-		e = nullptr;
 	}
+	entities.clear();
 }
 
 void EntityManager::update(float givenDeltaTime){

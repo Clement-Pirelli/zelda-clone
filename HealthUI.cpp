@@ -17,8 +17,11 @@ HealthUI::HealthUI(PlayerAvatar* givenPlayer){
 }
 
 HealthUI::~HealthUI(){
+	Service<SpriteManager>::getService()->destroySprite(emptyHeartSprite);
 	emptyHeartSprite = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(halfHeartSprite);
 	halfHeartSprite = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(heartSprite);
 	heartSprite = nullptr;
 	myPlayer = nullptr;
 	myRenderManager = nullptr;

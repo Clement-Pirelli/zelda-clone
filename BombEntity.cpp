@@ -22,6 +22,7 @@ BombEntity::~BombEntity(){
 		myCollider = nullptr;
 	}
 	Service<EntityManager>::getService()->removeEntity(this);
+	Service<SpriteManager>::getService()->destroySprite(mySprite);
 	mySprite = nullptr;
 	myRenderManager = nullptr;
 

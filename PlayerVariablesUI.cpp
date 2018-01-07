@@ -19,8 +19,11 @@ PlayerVariablesUI::PlayerVariablesUI(PlayerAvatar* givenPlayer){
 }
 
 PlayerVariablesUI::~PlayerVariablesUI(){
+	Service<SpriteManager>::getService()->destroySprite(rupeeSprite);
 	rupeeSprite = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(bombSprite);
 	bombSprite = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(keySprite);
 	keySprite = nullptr;
 	myRenderManager = nullptr;
 	myPlayer = nullptr;

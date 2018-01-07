@@ -12,6 +12,7 @@ Animation::Animation(std::vector<Sprite*> givenSprites, float givenTimer){
 
 Animation::~Animation(){
 	for (unsigned int i = 0; i < sprites.size() - 1; i++) {
+		Service<SpriteManager>::getService()->destroySprite(sprites[i]);
 		sprites[i] = nullptr;
 	}
 	sprites.clear();

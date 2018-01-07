@@ -12,6 +12,7 @@ FirstSwordItem::FirstSwordItem(){
 }
 
 FirstSwordItem::~FirstSwordItem(){
+	Service<SpriteManager>::getService()->destroySprite(displaySprite);
 	displaySprite = nullptr;
 }
 

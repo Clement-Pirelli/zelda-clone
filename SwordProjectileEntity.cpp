@@ -44,6 +44,7 @@ SwordProjectileEntity::SwordProjectileEntity(FirstSwordEntity* givenSword){
 }
 
 SwordProjectileEntity::~SwordProjectileEntity(){
+	Service<SpriteManager>::getService()->destroySprite(mySprite);
 	mySprite = nullptr;
 	delete myCollider;
 	myCollider = nullptr;

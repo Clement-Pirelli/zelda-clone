@@ -39,8 +39,8 @@ Room::Room(ROOMENEMYTYPE givenEnemyType){
 Room::~Room(){
 	checkIfCleared();
 	removeTiles();
-	for (unsigned int i = 0; i < tiles.size() - 1; i++) {
-		for (unsigned int j = 0; j < tiles[i].size() - 1; j++) {
+	for (unsigned int i = 0; i < tiles.size(); i++) {
+		for (unsigned int j = 0; j < tiles[i].size(); j++) {
 			if (tiles[i][j] != nullptr) {
 				delete tiles[i][j];
 				tiles[i][j] = nullptr;

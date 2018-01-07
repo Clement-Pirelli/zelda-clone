@@ -3,6 +3,7 @@
 
 class InputManager;
 class Sprite;
+class RenderManager;
 
 class GameOverState : public State {
 public:
@@ -14,6 +15,7 @@ public:
 	void exit();
 	std::string getNextState();
 private:
+	RenderManager* myRenderManager = nullptr;
 	InputManager* myInputManager = nullptr;
 	Sprite* gameOverSprite = nullptr;
 	const SDL_Point GAME_OVER_SPRITE_POSITION{ 100, 100 };

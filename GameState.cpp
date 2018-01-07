@@ -17,37 +17,30 @@
 GameState::GameState(){
 	myFont = new NumberFont("../Assets/numbers_font.png", 14, 14);
 	Service<NumberFont>::setService(myFont);
+	myInputManager = Service<InputManager>::getService();
+	enter();
+}
+
+
+
+GameState::~GameState(){
+	exit();
+	myInputManager = nullptr;
+	delete myFont;
+	myFont = nullptr;
+	Service<NumberFont>::setService(nullptr);
+}
+
+void GameState::enter(){
+	
 	myEntityManager = new EntityManager();
 	Service<EntityManager>::setService(myEntityManager);
-	myInputManager = Service<InputManager>::getService();
-	myPlayer = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, SDL_SCANCODE_X ,100, 50);
+	myPlayer = new PlayerAvatar(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_C, SDL_SCANCODE_X, 100, 50);
 	myEntityManager->addEntity(myPlayer);
 	myRoomManager = new RoomManager();
 	Service<RoomManager>::setService(myRoomManager);
 	myUI = new UI(myPlayer);
 	createRooms();
-}
-
-
-GameState::~GameState(){
-	delete myUI;
-	myUI = nullptr;
-	Service<RoomManager>::setService(nullptr);
-	delete myRoomManager;
-	myRoomManager = nullptr;
-	myInputManager = nullptr;
-	myEntityManager->removeEntity(myPlayer);
-	delete myPlayer;
-	myPlayer = nullptr;
-	delete myEntityManager;
-	myEntityManager = nullptr;
-	Service<EntityManager>::setService(nullptr);
-	Service<NumberFont>::setService(nullptr);
-	delete myFont;
-	myFont = nullptr;
-}
-
-void GameState::enter(){
 	//play the music
 }
 
@@ -71,6 +64,17 @@ bool GameState::update(float deltaTime){
 
 void GameState::exit(){
 	//stop playing the music
+	delete myUI;
+	myUI = nullptr;
+	delete myRoomManager;
+	myRoomManager = nullptr;
+	Service<RoomManager>::setService(nullptr);
+	myEntityManager->removeEntity(myPlayer);
+	delete myPlayer;
+	myPlayer = nullptr;
+	delete myEntityManager;
+	myEntityManager = nullptr;
+	Service<EntityManager>::setService(nullptr);
 }
 
 //TODO : put the game over state here

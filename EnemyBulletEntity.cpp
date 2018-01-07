@@ -42,6 +42,7 @@ EnemyBulletEntity::EnemyBulletEntity(int givenX, int givenY, ENEMYDIRECTION give
 EnemyBulletEntity::~EnemyBulletEntity(){
 	delete myCollider;
 	myCollider = nullptr;
+	Service<SpriteManager>::getService()->destroySprite(mySprite);
 	mySprite = nullptr;
 	myRenderManager = nullptr;
 	Service<EntityManager>::getService()->removeEntity(this);

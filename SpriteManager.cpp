@@ -10,7 +10,7 @@ SpriteManager::SpriteManager(){
 SpriteManager::~SpriteManager(){
 }
 
-bool SpriteManager::initialize(RenderManager * givenRenderManager){
+bool SpriteManager::initialize(RenderManager* givenRenderManager){
 	if (givenRenderManager == nullptr) {
 		return false;
 	}
@@ -25,6 +25,7 @@ void SpriteManager::shutdown(){
 		//reset the pointer, in case anyone is using it
 		sprite = nullptr;
 	}
+	sprites.clear();
 	//iterate through the "textures" map and destroy every texture
 	//auto is equal to std::pair<std::string, SDL_Texture*>
 	for (auto texturePair : textures) {
